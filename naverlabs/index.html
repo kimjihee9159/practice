@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAVER LABS</title>
+    <link rel="stylesheet" type="text/css" href="css/basic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<style>
+body{font-family:Roboto,"Noto Sans KR",sans-serif; font-weight:400; font-size:75%;}
+html, body{ min-width:320px; height:100%; }
+#wrap{height:100%;}
+</style>
+</head>
+<body>
+<div id="wrap">
+<!----------------------------------------------------------------->
+
+
+<style>
+#main_visual{ position:relative; height:100%; overflow:hidden; background:#000; z-index:5;}
+#scenes{position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;}
+#scenes .scene{
+    position:absolute; top:0; width:100%; height:100%; overflow:hidden;
+    background-size:cover; background-position:50% 50%; z-index:2;
+}
+#scenes .scene:first-child{left:0;}
+#scenes .scene:nth-child(2){left:100%;}
+#scenes .scene:nth-child(3){left:200%;}
+#scenes .scene:nth-child(4){left:300%;}
+#scenes .scene:nth-child(5){left:400%;}
+#scenes.animate{transition: left 0.7s;}
+/*-- background ------------*/
+#scenes .scene .background{ position:absolute; top:0; left:0; width:100%; height:100%;}
+#scenes .scene .background::before{
+    content:''; position:absolute; top:0; left:0; z-index:5;
+    width:100%; height:100%; background-color: #000; opacity:0.3; 
+}
+#scenes .scene .background div{
+    position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;
+    background-size:cover; background-position:50% 50%; opacity:1; transition: opacity 1s;
+}
+#scenes .scene .background.on div{opacity:0;}
+
+/*-- info ---------------*/ 
+.info{ 
+    position:absolute; top:50%; left:50%; z-index:10;
+    width:700px; height:280px; margin:-140px 0 0 -350px; color:#fff; text-align:center;    
+ }
+.info h2{ 
+    text-transform:uppercase; font-weight:700; margin: 0 0 11px;
+    font-size:5.2em; letter-spacing:0.08em;  line-height:1.05;    
+}
+.info p{ font-size:1.4em; line-height:1.6;}
+/*-- text ---------------*/
+.info span{ position:relative; display: inline-block; color:transparent; max-width:100%; white-space:pre; }
+.info span::before{ 
+    content: attr(data-text); overflow:hidden; white-space:pre;
+    position:absolute; top:0; left:0; right:0; height:100%; color:#fff; 
+    animation-duration:1.2s; animation-iteration-count: 1; animation-fill-mode:forwards;
+    }
+.info .text1::before{animation-name: text1;}
+.info .text2::before{animation-name: text2;}
+.info .text3::before{animation-name: text3; color: #c2c2c2;}
+.info .text4::before{animation-name: text4; color: #c2c2c2;}
+.info .text5::before{animation-name: text5;}
+@keyframes text1{0%{right:100%;} 50%{right:0;}}
+@keyframes text2{0%{right:100%;} 10%{right:100%;} 60%{ right:0;}}
+@keyframes text3{0%{right:100%;} 20%{right:100%;} 70%{ right:0;}}
+@keyframes text4{0%{right:100%;} 30%{right:100%;} 80%{ right:0;}}
+@keyframes text5{0%{right:100%;} 40%{right:100%;} 90%{ right:0;}}
+/*-- btn_play ---------*/
+.btn_play {margin: 24px 0 0;}
+.btn_play button{
+    display:inline-block; position:relative; width:197px; padding:0.85em 0 0.8em;
+    text-transform:uppercase; font-size:1em; letter-spacing:2px;
+    border: 1px solid #fff; transition: border-color 0.14s;
+    animation-name: play-button;
+    animation-duration:1.2s; animation-iteration-count: 1; animation-fill-mode:forwards;
+}
+@keyframes play-button{ 0%{opacity:0;} 50%{opacity:0;} 100%{ opacity:1; } }
+.btn_play button::before{
+    content:''; position:absolute; top:0; left:0; z-index:-1;
+    width:0; height:100%; background:#0078ff; transition: width 0.15s; 
+}
+.btn_play button:hover{ border-color:#0078ff;}
+.btn_play button:hover::before{width:100%;}
+
+/*-- roll_on ---------------*/ 
+.roll_on{ position:absolute; left:50%; bottom:38px; width:700px; margin-left:-350px; text-align:center; z-index:2;}
+.roll_on button{
+    position:relative; width:50px; height:30px; margin:0 5px; overflow:hidden;
+    background:transparent; text-indent: -99em;
+}
+.roll_on button::before,
+.roll_on button::after{ content:''; position:absolute; top:12px; left:0; width:100%; height:6px; background:#fff;}
+.roll_on button::after{ width:0; background:#0078ff;}
+.roll_on button:hover::after,
+.roll_on button.on::after{width:100%; transition: width 0.12s;}
+/*-- controller ---------------*/ 
+.controller .prev,
+.controller .next {
+    display:block; position: absolute; top:50%; left:30px; width:22px; height:39px; margin-top:-20px;
+    text-indent:-99em; overflow:hidden; z-index:5;
+    background-image: url(img/main_visual/btn_prev.png); background-size: 22px auto;
+    opacity:0; visibility:hidden; transition: opacity 0.7s visibility 0.7s;
+}
+.controller .next { left:auto; right:30px; background-image: url(img/main_visual/btn_next.png);}
+.controller .prev.on,
+.controller .next.on { opacity:0.3; visibility:visible; transition: opacity 0.1s; }
+.controller .prev.on:hover,
+.controller .next.on:hover { opacity:0.6; }
+/*-- popup ---------------*/ 
+.popup{ display:none; position:absolute; top:0; left:0; z-index:10; width:100%; height:100%; background:#000000cc;}
+.popup .popup_box {position:absolute; top:0; left:0; width:80%; height:0; padding-top: 56.25%; }
+.popup button {
+    position:absolute; width:45px; height:45px; top:0; right:0; visibility:hidden;
+    background-image: url(img/main_visual/close_pc.png); background-size: 45px 45px;
+    transition: right 0.15s 0.32s, top 0.15s 0.32s, visibility 0.15s 0.32s;
+}
+.popup button.on{right:-45px; visibility:visible;}
+#video_play{position:absolute; top:0; left:0; width:100%; height:100%;}
+/*-- 미디어쿼리 -------------------*/
+@media all and (max-width: 700px) {	
+    .info{ width:320px; height:160px; margin:-80px 0 0 -160px;}
+    .info h2{  font-size:2.8em; margin: 0 0 5px;}
+    .info p{ font-size:1.05em; }
+    .btn_play button{ font-size:1em; width:auto; padding:1.05em 2.2em; }
+    .btn_play button::before{ background: transparent;}
+    .btn_play button:hover{ border-color:#fff;}
+    .roll_on{ bottom:20px; width:320px; margin-left:-160px; }
+    .roll_on button{width:25px; margin:0 3px;}
+    .roll_on button::before,
+    .roll_on button::after{height:3px;}
+    .controller .prev,
+    .controller .next {display:none;}
+    .popup{ background:#000;}  
+    .popup .popup_box { width:100%; }
+    .popup button { 
+        width:40px; height:40px; 
+        background: url(img/main_visual/close_m.png) 50% 50% no-repeat;background-size: 16px 16px; 
+    }
+    .popup button.on{right:0; top:-40px;}
+}
+</style>
+<!-- main_visual ------------------------------------------->
+<div id="main_visual">
+
+    <!-- scenes ---------------------------------------------------------------->
+    <div id="scenes">
+        <!--01------>
+        <div class="scene" data-bg-video-id="3xbzBoVJgxY"><!--배경영상주소-->
+            <div class="background">
+                <div style="background-image: url('img/main_visual/01.jpg');"></div>
+            </div>
+            <div class="info">
+                <h2>
+                    <span class="text1" data-text=""></span><br>
+                    <span class="text2" data-text="1784">1784</span>
+                </h2>
+                <p>
+                    <span class="text3" data-text="Robot-friendly Building">Robot-friendly Building</span><br>
+                    <span class="text4" data-text=""></span>
+                </p>
+                <p class="btn_play">
+                    <button data-video-id="UrTlxUq_o1Y"><!--팝업영상주소-->
+                        <span class="text5" data-text="Play video">Play video</span>
+                    </button>
+                </p>
+            </div>
+        </div>
+        <!--//01------>
+        <!--02------>
+        <div class="scene" data-bg-video-id="vqyNvYr6OaQ">
+            <div class="background">
+                <div style="background-image: url('img/main_visual/02.jpg');"></div>
+            </div>
+            <div class="info">
+                <h2>
+                    <span class="text1" data-text=""></span><br>
+                    <span class="text2" data-text="ARCVERSE">ARCVERSE</span>
+                </h2>
+                <p>
+                    <span class="text3" data-text="AI, Robot, Cloud & Digital Twin Universe">AI, Robot, Cloud & Digital Twin Universe</span><br>
+                    <span class="text4" data-text=""></span>
+                </p>
+                <p class="btn_play">
+                    <button data-video-id="CeW8tuzxg2Y">
+                        <span class="text5" data-text="Play video">Play video</span>
+                    </button>
+                </p>
+            </div>
+        </div>
+        <!--//02------>
+        <!--05------>
+        <div class="scene" data-bg-video-id="YX7NqTDCJnk">
+            <div class="background">
+                <div style="background-image: url('img/main_visual/03.jpg');"></div>
+            </div>
+            <div class="info">
+                <h2>
+                    <span class="text1" data-text="AUTONOMOUS">AUTONOMOUS</span><br>
+                    <span class="text2" data-text="DRIVING">DRIVING</span>
+                </h2>
+                <p>
+                    <span class="text3" data-text="On-road Intelligence">On-road Intelligence</span><br>
+                    <span class="text4" data-text=""></span>
+                </p>
+                <p class="btn_play">
+                    <button data-video-id="bTSIp00lLvE">
+                        <span class="text5" data-text="Play video">Play video</span>
+                    </button>
+                </p>
+            </div>
+        </div>
+        <!--//05------>
+    </div>
+    <!-- //scenes ---------------------------------------------------------------->
+
+    <!-- controller ---------------------------------------------------------------->
+    <div class="controller">
+        <div class="roll_on"></div>
+        <button class="prev"></button>
+        <button class="next"></button>
+    </div>
+    <!-- controller ---------------------------------------------------------------->
+
+    <!-- popup ---------------------------------------------------------------->
+    <div class="popup">
+        <div class="popup_box">
+            <button></button>
+            <div id="video_play"></div>
+        </div>
+    </div>
+    <!-- //popup ---------------------------------------------------------------->
+
+</div>
+<!-- //main_visual ------------------------------------------->
+
+
+
+<style>
+#container{ position:relative; overflow:hidden; max-width:100%;}
+/*-- creating ------------*/
+.creating{ max-width:1000px; margin:0 auto; position:relative; padding-top:55px; height:507px;}
+.creating h2{font-size:3.4em; line-height:1.2; margin: 49px 0 22px;}
+.creating h2 .text2{ font-weight:600;}
+.creating p{ font-size:1.2em; line-height:1.83; color:#555;}
+.creating .product{ position:absolute; bottom:87px; right:50%; margin-right:-450px;}
+.creating .product img{ position:absolute; bottom:0; right:0;}
+.creating .product img[src$="car.png"]{width:340px; right:50px; bottom:25px; }
+.creating .product img[src$="robot.png"]{width:204px; right:0;}
+</style>
+<!-- container ------------------------------------------->
+<div id="container">
+
+    <!-- creating ------------------------------------------->
+    <div class="creating">
+        <h2>
+            <span class="text1">CREATING</span><br>
+            <span class="text2">NEW CONNECTIONS</span><br>
+            <span class="text3">BY ADVANCING TECHNOLOGY</span>
+        </h2>
+        <p>
+            <span class="text4">네이버랩스는 네이버의 미래 기술을 책임지는 R&D 전문 자회사입니다.</span><br>
+            <span class="text5">한국과 유럽의 우수한 연구자들이 함께 AI, 로보틱스, 자율주행, 3D/HD 매핑, AR 등의</span><br>
+            <span class="text6">연구에 매진하고 있습니다. 가장 독창적이며 앞선 기술력을 통해 사람, 머신, 공간, 정보를</span><br>
+            <span class="text7">새롭게 연결할 네이버 플랫폼의 미래를 준비하는 것이 우리의 미션입니다.</span>
+        </p>
+        <p class="product">
+            <img src="img/creating_car.png" alt="">
+            <img src="img/creating_robot.png" alt="">
+        </p>
+    </div>
+    <!-- //creating ----------------------------------------->
+
+</div>
+<!-- //container ------------------------------------------->
+
+
+
+
+
+
+<!-- JQuery ------------------------------------------->
+<script type="text/javascript" src="js/jquery.vendor.js"></script>
+<script type="text/javascript" src="js/main_visual.js"></script>
+<!-- //JQuery ----------------------------------------->
+
+<!--//--------------------------------------------------------------->
+</div>
+</body>
+</html>

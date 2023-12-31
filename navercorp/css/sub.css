@@ -1,0 +1,340 @@
+@charset "utf-8";
+
+/*--공통------------------------------------------------------*/
+
+    /*--content---------------------------------------*/
+
+    .content{max-width: 1120px; margin:74px auto 120px;}
+    .content.company{margin-top:54px;}
+    .content.contact{margin: 40px auto 30px;}
+    .content.promotion{max-width: 1160px; margin-top: 0;}
+    .content.featured{margin-top:54px;}
+
+    /*--content_box-----------------------------------*/
+
+    .content_box:first-child{margin:0;}
+    .content_box{font-size:0; margin-top: 80px;}
+
+    .content_box:after, .content_box dl:after{content:''; display: block; clear: both;}
+
+    .content_box dl > dt{
+        display: inline-block; vertical-align: top; width:263px;
+        font-family:'NanumSquare-EB',sans-serif; font-size: 20px; line-height: 1.4; letter-spacing:-0.6px;}
+    .content_box dl > dd{
+        display: inline-block; vertical-align: top; width: 857px;
+        font-size: 15px; color: #606167; line-height:1.8; letter-spacing: -0.2px;}
+    
+    
+/*--sub_header.php------------------------------------------------------*/
+
+    /*--location----------------------------------------*/
+
+        .location{max-width: 1600px; margin:0 auto; padding: 0 0 36px 30px;}
+        .location li{float: left; position: relative; margin-top: -2px; padding: 0 25px 0 0 }
+        .location li::after{
+            content:''; display: block; position: absolute; right: 10px; top: 5px; width: 5px; height: 7px; background: url(../img/sprite.png) no-repeat; background-size: 474px 1500px;  background-position: -103px 0;
+            }
+        .location li:last-child:after{display:none}
+        .location a{font-size: 12px; color: #878890}
+        .location span{font-size:12px; color: #212121;}
+
+    /*--location----------------------------------------*/
+
+
+    /*--head_title-------------------------------------*/
+
+    .head_title{font-family:'NanumSquare-EB', sans-serif; font-size: 42px; color: #212121; text-align : center; padding: 18px 0 29px 0; letter-spacing: -2.5px;}
+    .head_info{text-align: center; padding: 0 0 25px; font-size: 20px; line-height: 32px;
+    letter-spacing: -0.2px;}
+    .head_img{overflow: hidden; position: relative; padding-top: 24%;}
+    .head_img img{width:100%; position: absolute; left:0; bottom:0;}
+
+/*--sub_header.php------------------------------------------------------*/
+
+
+/*--milestones.php------------------------------------------------------------*/
+
+    /*--head_tab---------------------------------------*/
+
+    .head_tab{padding: 0 0 27px; font-size:0; text-align: center;}
+    .head_tab li{
+        display: inline-block; position: relative; padding: 0 30px 0;
+        font-family:"NanumSquare-EB", sans-serif; font-size: 20px;
+        }
+    .head_tab li:before{
+        content:""; display: block; position: absolute; left: 0;
+        top: 5px; width:1px; height: 18px; background-color: #dce0e6
+        }
+    .head_tab li:first-child:before{display: none;}
+    .head_tab a{
+        position: relative; color: #bac2cd; text-decoration: none; transition: color .3s;}
+    .head_tab a:hover{color: #333;}
+    .head_tab a[aria-selected="true"]{color: #333;}
+    .head_tab a:after{
+        content:""; display: block; position: absolute; left: 0; bottom: 1px;
+        width: calc(100% - 2px); height: 2px; background-color: #00c73c; transform-origin: 0 0; transform: scaleX(0); transition: transform 0.3s ease;
+        }
+    .head_tab a:hover:after{transform: scaleX(1);}
+    .head_tab a[aria-selected="true"]:after{transform: scaleX(1);}
+
+    /*--tab_menu----------------------------------------------------*/
+
+    .tab_menu > li{display: block; cursor: pointer;}
+    .tab_list > div{display: none;}
+    .tab_list > div.on{display: block;}
+
+    .tab_menu > li{margin-bottom:10px; color:#bac2cd; text-decoration: none; transition: color 0.3s}
+    .tab_menu > li:hover{color:#333;}
+    .tab_menu > li span{position: relative; display: inline-block;}
+    .tab_menu > li span:after{
+        content:''; position: absolute; left: 1px; bottom: 4px;
+        width: calc(100% - 2px); height: 2px;
+        background-color:#00c73c; transform-origin: 0 0; transform: scaleX(0);
+        transition: transform .3s ease;
+        }
+    .tab_menu > li:hover span:after,
+    .tab_menu > li.on span:after{transform: scaleX(1);}
+    .tab_menu > li.on{color:#333;}
+    /*----------------------------------*/
+    .history_box ul{ font-size: 0; margin: -3px 0 0;  padding: 35px 0; border-top: 1px solid #efefef; }
+    .history_box ul:first-child { padding-top: 0; border-top: 0; }
+    .history_box ul:after { content: ''; display: block; clear: both;}
+    .history_box ul li{ float: left;}
+    .history_box ul li:first-child {width: 16.34%; font-family: "NanumSquare-EB", sans-serif;  font-size: 20px;  color: #333;}
+    .history_box ul li:last-child { overflow: hidden; font-size: 15px; color: #606167; }
+    .history_box li p{font-size:0; margin-top: 5px; }
+    .history_box li b{ display: inline-block; width: 50px; font-family: "NanumSquare-B", sans-serif;  font-size: 15px; color: #333; }
+    .history_box li span { font-size: 15px; }
+    /*--------선생님이 추가해주싱거----------*/
+    .history_box li p > span{display: inline-block;}
+    .history_box li b {vertical-align:top;}
+    .history_box em{font-family: "Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif;}
+
+/*--milestones.php------------------------------------------------------------*/
+
+
+/*--company.php----------------------------------------------------*/
+
+    /*--table----------------------------------------------------*/
+
+    .table{width:100%; font-size: 15px; letter-spacing: -0.1px;}
+    .table caption{font-size:0; text-indent: -9999px;}
+    /*--text-indent = 텍스트를 정해진 범위에서 어디에 위치하게 할지 정하는 코드--*/
+    .table colgroup col:first-child{width:160px;}
+    .table tr{border-bottom: 1px solid #efefef;}
+    .table tr:first-child{border-top: 2px solid #333;}
+    .table th{height:56px; font-family: "NanumSquare-B",sans-serif; color:#333; text-align:left;}
+
+/*--company.php----------------------------------------------------*/
+
+
+
+/*--pressReleases.php--------------------------------------------------*/
+
+    /*--report_list-------------------------------*/
+    .report_list li{
+        display: none; float: left; vertical-align: top; width: 33.333%; margin: 0 0 60px 0;}
+    .report_list li > a{
+        display: block; width: calc(100% - 40px); margin: 0 auto; text-decoration: none;
+    }
+    .report_list li > a:hover h3{text-decoration: underline;}
+    .report_list .img_box{overflow: hidden; position: relative; width: 100%; margin: 0 0 19px; padding-top: 56.1%; background: no-repeat 50%; background-size: cover;}
+
+    /*--text_box-------------------------------*/
+    .report_list .text_box h3{
+        max-height: 56px; margin: 0 0 5px; padding: 0 10px 0 0;
+        font-family: 'NanumSquare-B', sans-serif; font-size: 18px; color: #212121;
+        line-height: 1.6; overflow: hidden; word-break: break-all; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+    }
+    .report_list .text_box p{
+    max-height: 70px; margin: 0 0 9px; font-size: 15px; color: #606167; line-height: 1.6; overflow: hidden; word-break: break-all; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+    }
+    .report_list .text_box span{ font-size: 12px; color: #878890}
+
+    /*--btn_area-------------------------------*/
+    .btn_area{text-align: center; clear: both; font-size: 0;}
+    .btn_more{position: relative; width: 46px; height: 46px; background-color: #bac2cd;
+    border-radius: 100%; transition: background-color 0.3s;
+    }
+    .btn_more:hover{background-color: #00c73c}
+    .btn_more:before{
+        content:''; display: block; position: absolute; left: 50%; top: 50%; margin: -8px 0 0 -7px; width: 14px;
+        height: 16px; background: url(../img/sprite.png) no-repeat;background-size: 474px 1500px; background-position: -194px 0;
+    }
+
+    @media only screen and (max-width:1600px){
+        /*and 뒤에 반드시 스페이스 필요*/
+        .content.promotion{max-width:100%; padding:0 160px;}
+    }
+
+    /*--search------------------------------------------------*/
+
+        .underline::after{background-color: #00c73c;}
+        .underline::before{background-color: #333;}
+        .underline::before, 
+        .underline::after{
+            content:''; display: block; position: absolute; left: 0; bottom: 0;
+            width: 100%; height: 1px; transform: scaleX(0);
+            transform-origin: 0 0; transition: transform .3s;}
+
+        .search_wrap{ padding: 10px 0 40px 0; font-size:0; text-align:center; }
+
+        /*--select_wrap----------------------------------*/
+        .select_wrap{display: inline-block; vertical-align: top; min-width:151px; position:relative;}
+            /*--vertical-align=오브젝트가 시작되는 지점(위치) 지정--*/
+        .select_wrap > button{
+            position: relative; width: 100%; height: 56px; border-bottom: 1px solid #dce0e6;
+            font-size: 15px; color: #333; text-align: left; line-height: 55px;
+        }
+        .select_wrap > button:after{
+            content: ''; display: block; position: absolute; right: 0; top: 50%;
+            width: 15px; height: 7px; margin-top: -4px; background: url(../img/sprite.png) no-repeat; background-size: 474px 1500px; background-position: -169px -39px;
+        }
+        .select_wrap > button:hover + .underline::before{transform: scaleX(1);}
+
+        /*--select_box----------------------------------*/
+        .select_box{
+            display: none; overflow: hidden; overflow-y: auto; /*--세로 스크롤=>overflow-y--*/
+            position: absolute; width: 100%; max-height: 194px; left: 0; top: 0;
+            z-index: 10; border: 1px solid #00c73c; background-color: #fff;}
+        .select_box button{
+            width: 100%; text-align: left; padding: 0 20px; line-height: 48px;
+            font-family: 'NanumSquare', sans-serif; font-size: 15px; color: #606167;
+        }
+        .select_box button:hover{
+            background-color: #f8f9fa; color: #00b843; font-family: 'NanumSquare-B', sans-serif;}
+        
+        .select_wrap > button[aria-expanded="true"] ~ .select_box{display:block;}
+
+        /*--search_box-----------------------------------*/
+        .search_box{ display: inline-block; position: relative; width: 249px; height: 56px;}
+        .search input{width: 100%; height: 56px; border-bottom: 1px solid #dce0e6; font-size: 16px; color: #333; line-height: 55px; padding: 0 0 0 5px;}
+        .search_box button{
+            position: absolute; right: 0; top: 4px; width: 46px; height: 46px;
+            width: 46px; height: 46px; border-radius: 100%; transition: background-color .3s;}
+        .search_box button:before{
+            content: ''; display: block; width: 20px; height: 20px;
+            position: absolute; left: 50%; top: 50%; margin: -10px 0 0 -10px;
+            background: url(../img/sprite.png) no-repeat; background-size: 474px 1500px; background-position: -169px 0;
+        }
+        .search_box button:hover{background-color: #00c73c;}
+        .search_box button:hover:before{background-position: -124px -65px;}
+
+        .search_box input:hover + .underline::before,
+        .search_box input:focus + .underline::after{transform: scaleX(1);}
+        /*--
+        hover => '마우스 올렸을 때'를 의미
+        focus => '클릭했을 때'를 의미
+        --*/
+    /*--search------------------------------------------------*/
+
+/*--pressReleases.php--------------------------------------------------*/
+
+
+
+/*--contact.php---------------------------------------------------------*/
+
+    .contact dd > strong{font-family: 'NanumSquare-B', sans-serif; color: #333;}
+    .contact dd > p{margin: 3px 0 21px;}
+
+    /*--map_wrap------------------------------------*/
+
+    .map_wrap{margin: 0; padding: 0;}
+    .map_wrap > div{width: 100%; height: 461px; overflow: hidden;}
+
+    /*--customer_center----------------------------*/
+
+    .customer_center li{float: left; width: 33.333%;}
+    .customer_center a{text-decoration: none; position: relative; top: -3px; left: 0;}
+    .customer_center a > p{color: #606167; padding-top: 3px;}
+    .customer_center a:hover > strong{text-decoration: underline;}
+    .customer_center a > strong{
+        position: relative; padding-right: 32px; font-size: 15px;
+        font-family: 'NanumSquare-B', sans-serif; color: #333;
+    }
+    .customer_center a > strong:after{
+        content:''; display: block; position: absolute; top: -3px; right: 0;
+        width: 18px; height: 18px; background: url(../img/sprite.png) no-repeat;
+        background-size: 474px 1500px; background-position: -59px 0;
+    }
+    .customer_center a:hover > strong:after{background-position: -104px -68px;}
+
+/*--contact.php---------------------------------------------------------*/
+
+
+/*--proposalGuide.php---------------------------------------------------------*/
+
+    .proposal_area{width: 100%; background-color: #f5f7f8;}
+    .proposal_area .content{position: relative; margin: 0 auto;}
+    .proposal_area .content h3{padding: 27px 0; font-family: 'NanumSquare-EB', sans-serif; font-size: 20px; line-height: 32px; letter-spacing: -.2px;}
+    .btn_expand{position: absolute; right: 0; top: 20px; width: 46px; height: 46px;
+    border-radius: 100%; background-color: #f5f7f8; transition: background-color .3s;}
+    .btn_expand::after{
+        content: ''; display: block; width: 20px; height: 10px;
+        position: absolute; left: 50%; top: 50%; margin: -4px 0 0 -10px;
+        background: url(../img/sprite.png) no-repeat; background-size: 474px 1500px;
+        background-position: -121px -13px;}
+    .btn_expand:hover{background-color: #00c73c;}
+    .btn_expand:hover::after{background-position: -145px -13px;}
+    .btn_expand.on::after{background-position: -121px 0;}
+    .btn_expand.on:hover::after{background-position: -145px 0;}
+    .proposal_list[aria-expanded="true"]{display: block;}
+    .proposal_list[aria-expanded="false"]{display: none;}
+    /*---------------------------*/
+    .proposal_list::after{content: ''; display: block; clear: both;}
+    /*--li에 들어가는 float을 다른 태그에 적용되는 것을 방지하기 위해 반드시 작성해주는 것이 좋다----*/
+    .proposal_list{padding: 0 0 54px; margin-top: -2px;}
+    .proposal_list > li{float: left; position: relative; margin-top: 10px;
+    width: 216px; height: 142px; border-radius: 3px; background-color: #fff; overflow: hidden;}
+    .proposal_list > li + li{margin-left: 10px;}
+    .proposal_list > li:nth-child(6),
+    .proposal_list > li:nth-child(11){margin-left: 0;}
+    .proposal_list > li:nth-child(n):nth-child(-n+5){margin-top: 0;}
+    /*---------------------------*/
+    .proposal_list li > a,
+    .proposal_list li .ad{
+        display: block; position: relative; height: 100%; padding: 30px 0 0;
+        font-family: 'NanumSquare-B', sans-serif; font-size: 15px; color:#606167;
+        text-align: center;
+    }
+    .proposal_list li> a:hover p{text-decoration: underline;}
+    .proposal_list li > a p,
+    .proposal_list > li .ad p
+    {position: absolute; bottom: 23px; left: 0; right: 0;}
+    .proposal_list li .place_api p{ font-size: 14px; letter-spacing: -.5px;}
+    /*---------------------------*/
+    .proposal_list li > a::before,
+    .proposal_list li .ad::before,
+    .proposal_list li .ad > p::after{
+        content:''; display: inline-block; background: url(../img/sprite.png) no-repeat; background-size: 474px 1500px;}
+
+    .proposal_list li .news::before{width: 56px; height: 46px; background-position: 0 -153px; margin-top: 5px;}
+    .proposal_list li .ad::before{width: 56px; height: 46px; background-position: -61px -153px; margin-top: 5px;}
+    .proposal_list li .webtoon::before{width: 56px; height: 54px; background-position: 0 -1360px;}
+    .proposal_list li .audioclip::before{width: 62px; height: 59px; background-position: -412px -976px;}
+    .proposal_list li .line::before{width: 56px; height: 51px; background-position: 0 -254px;}
+    .proposal_list li .financial::before{width: 83px; height: 23px; background-position: -364px -1155px; margin-top: 14px;}
+    .proposal_list li .media::before{width: 80px; height: 27px; background-position: -60px -1360px; margin-top: 13px;}
+    .proposal_list li .clova::before{width: 100px; height: 14px; background-position: -364px -1188px; margin-top: 22px;}
+    .proposal_list li .commerce_solution::before{width: 50px; height: 56px; background-position: -201px -737px; margin-top: -3px;}
+    .proposal_list li .cs::before{width: 61px; height: 51px; background-position: -61px -257px;}
+    .proposal_list li .game::before{width: 64px; height: 50px; background-position: -148px -1360px;}
+    .proposal_list li .place_api::before{width: 50px; height: 58px; background-position: -424px -1322px;}
+    /*---------------------------*/
+    .proposal_list li .ad > p::after{width: 16px; height: 7px; background-position: -103px -10px;}
+    .proposal_list .ad{position: relative; top: 0; transition: top .5s;}
+    .proposal_list .ad > p::after,
+    .proposal_list .ad::before{transition: all .2s; opacity: 1;}
+
+
+    .proposal_list > li:hover .ad{top: -77px;}
+
+    .proposal_list > li:hover .ad > p::after,
+    .proposal_list > li:hover .ad::before{opacity: 0;}
+
+    .proposal_list .ad > dl{margin: 48px 0 0; font-size: 12px; transition: all .2s; opacity: 0;}
+    .proposal_list .ad dd{margin: 0 0 6px; padding-left:  28px; text-align: left;}
+    .proposal_list .ad a{color : #606167; font-family: 'NanumSquare', sans-serif;}
+    .proposal_list > li:hover .ad > dl{opacity: 1;}
+   
+/*--proposalGuide.php---------------------------------------------------------*/

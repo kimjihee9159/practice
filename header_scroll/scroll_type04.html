@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll_type04</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <style>
+        *{margin: 0; padding: 0;}
+        body{min-height: 2000px;}
+    </style>
+</head>
+<body>
+    <style>
+        header{background-color: #969595; width: 100%;}
+        .logo{width: 100px; height: 80px; margin: 0 auto; background: #fff700;}
+        .nav{position: absolute; width: 100%; height: 10vw; background: #00d8ff;}
+        .navfixed{position: fixed; top: 0;}
+    </style>
+
+    <header>
+        <div class="logo">logo</div>
+        <div class="nav">menu1 / menu2</div>
+    </header>
+
+    <script>
+        $(document).ready(function(){
+            var navOffset = $('.nav').offset();
+            
+                $(window).scroll(function(){
+                    if($(document).scrollTop() > navOffset.top){
+                        $('.nav').addClass('navfixed');
+                    }else{
+                        $('.nav').removeClass('navfixed');
+                    }
+                });
+        });
+    </script>
+
+</body>
+</html>

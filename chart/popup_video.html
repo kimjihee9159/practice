@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="basic.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <title>팝업-비디오</title>
+</head>
+<body>
+<div id="wrap">
+<!--------------------------------------------------------------------->
+
+<!--nav---------------------------------->
+
+<style>
+#wrap{text-align: center;}
+nav{margin: 60px 0;}
+.muon{font-weight: bold;}
+</style>
+
+<nav>
+<a href="popup_layer.html">팝업-레이어</a> / 
+<a href="popup_video.html" class="muon">팝업-비디오</a> / 
+<a href="popup_gallery.html">팝업-비디오갤러리</a>
+</nav>
+
+<!--nav---------------------------------->
+
+<style>
+.video_list li{display: inline-block; cursor: pointer;}
+/*-----------------------*/
+.video_popup{
+    position: fixed; top: 0; left: 0; z-index: 999; width: 100%; height: 100%;
+}
+.video_popup .dim{
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; background-color: #000000cc;
+}
+.video_popup .dim::after{
+    content: 'X'; position: fixed; top: 0; right: 0; background-color: #a5a5a5; color: #fff; padding: 10px 15px; cursor: pointer;
+}
+/*-----------------------*/
+.video_popup .video_box{
+    position: relative; z-index: 999;
+    top: 50%; left: 50%; width: 1120px; height: 610px; transform: translate(-50%, -50%);
+}
+.video_popup .video_box iframe{
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%; object-fit: cover; background-color: cover; background-repeat: no-repeat; background-position: center center;
+}
+/*----------------*/
+.video_popup{display: none;}
+.video_popup.show{display: block;}
+/*-- .show=스크립트에서 불러온 것으로 앞의 태그와 붙여서 써야 함--*/
+.video_popup .video_title{position: absolute; bottom: -30px; color: #fff;}
+</style>
+
+
+
+
+<ul class="video_list">
+    <li data-video="b_k_7ra2upg" data-title="GFRIEND(여자친구)-키네틱 타이포그래피">
+        <img src="img/01-static.gif" data-animated="img/01-animated.gif" data-static="img/01-static.gif" alt="">
+    </li>
+    <li data-video="lQRVCHXRf2E" data-title="BTS-Butter-키네틱 타이포그래피">
+        <img src="img/02-static.gif" data-animated="img/02-animated.gif" data-static="img/02-static.gif" alt="">
+    </li>
+</ul>
+
+<div class="video_popup">
+    <span class="dim"></span>
+</div>
+
+<script>
+/*--클릭하면 팝업창에 동영상 띄우기--*/
+
+$(".video_list li").click(function(){
+    $(".video_popup").addClass("show"),
+    $(".video_popup").append("<div class='video_box'><iframe src='http://www.youtube.com/embed/" + $(this).data("video") + "?rel=0&playsinline=1&autoplay=1' frameborder='0' allowfullscreen></iframe><h4 class='video_title'>"+ $(this).data("title") + "</h4></div>")
+    //append=html 출력하는 코드
+});
+
+
+/*--백그라운드 클릭해서 팝업창 끄기--*/
+$(".video_popup .dim").click(function(){
+    $(".video_popup .video_box").remove(),
+    $(".video_popup").removeClass("show")
+});
+
+/*--썸네일 이미지에서 마우스오버 했을 때 gif 보이게 하는 기능--*/
+$(".video_list img").mouseover(function(){
+    $(this).attr("src", $(this).data("animated"))
+});
+$(".video_list img").mouseout(function(){
+    $(this).attr("src", $(this).data("static"))
+});
+</script>
+
+
+<!--------------------------------------------------------------------->
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform 속성</title>
+</head>
+<body>
+
+<!-----
+#CSS transform 속성
+rotate(회전) translate(이동) scale(확대, 축소) skew(비틀기)
+-------------------------------
+rotate(45deg)             :각도 360도
+translate(50px, 50%)      :x축, y축
+translate3d(40px, 0, 0)   :x축, y축, z축
+scale(1.5, 1)             :배수
+skew(30deg)               :각도
+--------------->
+
+<style>
+    .rotate{
+        width: 100px; height: 100px; margin: 0 auto;
+        background-color: #ff6600; transition: all ease 1s;}
+    .rotate:hover{transform: rotate(360deg);}
+    /*--rotate : 평면 상태로 회전   /   rotateX, rotateY: 축을 중심으로 회전--*/
+</style>
+
+<div class="rotate">rotate</div>
+
+
+    <hr stlye="margin: 50px 0;">
+
+
+<style>
+    .translate{
+        width: 100px; height: 100px; margin: 0 auto;
+        background-color: #ff6600; transition: all ease 1s;}
+    .translate:hover{transform: translate(0, 50px);}
+    /*--rotate : 평면 상태로 회전   /   rotateX, rotateY: 축을 중심으로 회전--*/
+</style>
+
+<div class="translate">translate</div>
+
+
+    <hr stlye="margin: 50px 0;">
+
+
+<style>
+    .scale{
+        width: 100px; height: 100px; margin: 0 auto;
+        background-color: #ff6600; transition: all ease 1s;}
+    .scale:hover{transform: scale(2,1);}
+    /*--rotate : 평면 상태로 회전   /   rotateX, rotateY: 축을 중심으로 회전--*/
+</style>
+
+<div class="scale">scale</div>
+
+
+    <hr stlye="margin: 50px 0;">
+
+
+<style>
+    .skew{
+        width: 100px; height: 100px; margin: 0 auto;
+        background-color: #ff6600; transition: all ease 1s;}
+    .skew:hover{transform: skew(30deg, 30deg);}
+    /*--rotate : 평면 상태로 회전   /   rotateX, rotateY: 축을 중심으로 회전--*/
+</style>
+
+<div class="skew">skew</div>
+
+</body>
+</html>

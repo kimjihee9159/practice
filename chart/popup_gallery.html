@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="basic.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <title>팝업-비디오</title>
+</head>
+<body>
+<div id="wrap">
+<!--------------------------------------------------------------------->
+
+<!--nav---------------------------------->
+
+<style>
+#wrap{text-align: center;}
+nav{margin: 60px 0;}
+.muon{font-weight: bold;}
+</style>
+
+<nav>
+<a href="popup_layer.html">팝업-레이어</a> / 
+<a href="popup_video.html">팝업-비디오</a> / 
+<a href="popup_gallery.html" class="muon">팝업-비디오갤러리</a>
+</nav>
+
+<!--nav---------------------------------->
+
+<style>
+/*-- .box_wrap(1220*834) .box(1089*700) .slides li(1089*605) ---*/
+.gallery_list li{display: inline-block; cursor: pointer;}
+/*--gallery_popup---------------------*/
+.gallery_popup{position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: none;}
+.gallery_popup .box_wrap{
+    position:relative; top:50%; left:50%; background:#fff;
+    width:1220px; height:834px; transform: translate(-50%, -50%); padding:60px 66px;
+    /*--박스의 크기를 고려해 transform으로 위치를 옮겨서 가운데 오도록 하는 태그--*/
+}
+.gallery_popup .box{width: 1089px; height: 700px; overflow: hidden;}
+/*--slides---------------------*/
+.slides{width: 600%; position: relative; left: 0; top: 0; background: #000;}
+/*--여러 영상이 옆으로 정렬된 상태로 그걸 다 담고있는 class이므로 가로크기를 600%로 설정--*/
+.slides::after{content: ""; display: block; clear: both;}
+.slides li{float: left; position: relative; width: 1089px; height: 605px;}
+.slides h4{position: absolute; bottom: -60px; left: 0; font-size: 20px; font-weight: bold; width: 100%;}
+.slides iframe{
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%; object-fit: cover; background-color: cover;
+    /*--object-fit : 화면에 꽉차게하는 태그--*/
+    background-repeat: no-repeat; background-position: center center;
+}
+/*--button-----------------------*/
+.btn{
+    position: absolute; width: 50px; height: 50px; border-radius: 50%;
+    font-weight: bold; background: #c2c2c2; bottom: 13%; transform: translateY(-50%); transition: 0.2s; 
+}
+.btn:hover, .btn:focus{background: #555;}
+.--prev{left: 21%;}
+.--next{right: 21%;}
+.--prev::before,
+.--next::before{position: absolute; top: 15px; width: 100px; font-size: 15px;}
+.--prev::before{content: '이전 영상'; left: 50px;}
+.--next::before{content: '다음 영상'; right: 50px;}
+/*--dim, close---------------------*/
+.dim{
+    position: fixed; top: 0; left: 0; right: 0; bottom:0; background: #000000cc; z-index: -1;
+    /*--z-index : 레이어가 겹쳐졌을 때 위치를 지정해주는 코드--*/
+}
+.close{
+    position: absolute; top: 50%; right: 50%; padding: 15px 20px; background: #888; color: #fff;
+    transform: translate(calc(-50% - -635px), calc(-50% - 395px));
+}
+/*--bullets-----------------------------*/
+.bullets{position:absolute; bottom: 100px; left: 50%;; transform: translateX(-50%);}
+.bullets li{float: left; margin: 0 8px;}
+.bullets li a{
+    display: block; text-decoration: none; color: transparent;
+    width: 15px; height: 15px; background-color: #ccc; border-radius: 50%; transition: .2s;
+}
+.bullets li a.on{background: #333;}
+</style>
+
+
+
+<ul class="gallery_list">
+    <li data-url="b_k_7ra2upg" data-title="GFRIEND(여자친구)-키네틱 타이포그래피">
+        <img src="img/01-static.gif" data-animated="img/01-animated.gif" data-static="img/01-static.gif" alt="">
+    </li>
+    <li data-url="lQRVCHXRf2E" data-title="BTS-Butter-키네틱 타이포그래피">
+        <img src="img/02-static.gif" data-animated="img/02-animated.gif" data-static="img/02-static.gif" alt="">
+    </li>
+    <li data-url="b_k_7ra2upg" data-title="GFRIEND(여자친구)-키네틱 타이포그래피">
+        <img src="img/01-static.gif" data-animated="img/01-animated.gif" data-static="img/01-static.gif" alt="">
+    </li>
+</ul>
+
+<div class="gallery_popup">
+    <div class="box_wrap"><!--영상을 담고 있는 박스-->
+        <div class="box">
+            <ul class="slides">
+                <!--여러 영상을 한꺼번에 정렬시켜놓고 CSS로 가려두기-->
+                <li id="item">
+                    <iframe src="" frameborder="0" allowfullscreen></iframe>
+                    <h4></h4>
+                </li id="item">
+                <li>
+                    <iframe src="" frameborder="0" allowfullscreen></iframe>
+                    <h4></h4>
+                </li>
+                <li id="item">
+                    <iframe src="" frameborder="0" allowfullscreen></iframe>
+                    <h4></h4>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <button class="btn --prev">&larr;</button>
+    <button class="btn --next">&rarr;</button>
+    <!--class 앞에 --붙이는 이유 : 스크립트 짤 때 프로그램이 헷갈려하는 것을 방지-->
+    <!--Entity code = 기호문자 코드-->
+    <button class="close">X</button>
+    <span class="dim"></span>
+</div>
+
+<script>
+//기본 설정//
+const GalleryList = document.querySelectorAll(".gallery_list li")
+const GalleryPopup = document.querySelector(".gallery_popup")
+const SlideUl = document.querySelector(".slides")
+let slidesLi = document.querySelectorAll(".slides li")
+let slideItem = document.querySelectorAll(".slides iframe")
+let slideTitle = document.querySelectorAll(".slides h4")
+const itemCount = slidesLi.length;//slidesLi의 가로넓이
+const duration = 400;
+    //slide 넘어가는 시간
+let bullets = 0;
+    //페이지 인덱스 갯수=>이전, 다음 버튼과 연동, 영상 갯수 표시
+let itemIdx = 0;
+    //이전, 다음 버튼이 작동할 때 기준이 되는 탭(영상)
+
+//--팝업 갤러리 이벤트--//
+GalleryList.forEach((thumbnail) => {
+/*forEach=>갤러리 리스트의 갯수 확인한는 코드*/
+    thumbnail.addEventListener("click", (e) => {
+        e.preventDefault();
+        /*=행위가 끝났으면 중지해라*/
+        GalleryPopup.style.display = "block";
+        for(let i = 0; i < GalleryList.length; i++){
+            slideItem[i].src = 'https://youtube.com/embed/' + $(GalleryList[i]).data('url') + "?rel=0&playsinline=1&autoplay=1";
+            slideTitle[i].innerHTML = $(GalleryList[i]).data('title');
+        }
+    });
+});
+
+//-팝업 닫기 이벤트-//
+document.querySelector(".dim").addEventListener("click", ()=>{
+    GalleryPopup.style.display = "none"
+    location.reload();
+});
+document.querySelector(".close").addEventListener("click", ()=>{
+    GalleryPopup.style.display = "none"
+    location.reload();
+});
+
+//bullets li 생성:.slides li 갯수에 맞게 생성
+function createBullets() {
+    const bulletsList = document.createElement("ul");
+    bulletsList.setAttribute("class", "bullets");
+    GalleryPopup.appendChild(bulletsList);
+    slidesLi.forEach((slideUl, index) => {
+        const a =document.createElement("a");
+        a.setAttribute("href", "#")
+        a.innerHTML = `${index}`;
+        const li = document.createElement("li");
+        li.appendChild(a);
+        bulletsList.appendChild(li);
+    });
+    return(bullets = document.querySelectorAll(".bullets a"));
+}
+createBullets();
+
+//bullet을 클릭하면 해당 위치로 슬라이드(.bullets li 순서, .slides {left:0;}값 변경)
+function bulletLink() {                           
+  bullets.forEach((bullet, index) => {
+    bullet.addEventListener("click", (e) => {
+      stopVid();
+      e.preventDefault();
+      const clickedIndex = index;
+      let step = clickedIndex - itemIdx;
+      itemIdx = clickedIndex;
+      bulletClassReset();
+      bullets[clickedIndex].classList.add("on");
+      slidesLi = document.querySelectorAll(".slides li");
+      let currentSlides = [...slidesLi];
+      if (step > 0) {
+        let sliceSlides = currentSlides.slice(undefined, step);
+        slideUl.style.transition = duration +"ms";
+        slideUl.style.left = step * -100 + "%";
+        window.setTimeout(() => {
+          slideUl.removeAttribute("style");
+          slideUl.append(...sliceSlides);
+        }, duration);
+      } else {
+        sliceSlides = currentSlides.slice(step);
+        slideUl.prepend(...sliceSlides);
+        slideUl.style.left = step * 100 + "%";
+        window.setTimeout(()=>{
+            slideUl.style.left = 0;
+            slideUl.style.transition = duration +"ms";
+        })
+      }      
+      if (step==0) return;
+    });
+  });
+}
+bulletLink();
+
+//.gallery_list li 클릭하면 해당하는 영상으로 점프
+GalleryList.forEach((thumbnail, index) => {
+    thumbnail.addEventListener("click", (e) => {
+        e.preventDefault();
+        const clickedIndex = index;
+        let step = clickedIndex - itemIdx;
+        itemIdx = clickedIndex;
+        bulletClassReset();
+        bullets[clickedIndex].classList.add("on");
+        slidesLi = document.querySelectorAll(".slides li");
+        let currentSlides = [...slidesLi];
+        //...=속성을 가져오라는 명령
+        if (step > 0) {
+            let sliceSlides = currentSlides.slice(undefined, step);
+                slideUl.append(...sliceSlides);
+            // 맨 뒤로 보내라
+        } else {
+            sliceSlides = currentSlides.slice(step);
+            slideUl.prepend(...sliceSlides);
+            // 맨 앞으로 보내라
+        }//리스트 순서대로 회전하도록 하는 명령어
+    });
+});
+
+//버튼 클릭 이벤트 : 다음/이전
+document.querySelector(".--next").addEventListener("click", nextSlideItem);
+document.querySelector(".--prev").addEventListener("click", prevSlideItem);
+
+//다음 버튼 클릭
+function nextSlideItem(){
+    itemIdx++;
+    itemIdx %= itemCount;
+    slideUl.style.left = "-100%";
+    slideUl.style.trasition = duration + "ms";
+    window.setTimeout(()=>{
+        slideUl.appendChild(slideUl.FirstElementChild);
+        slideUl.removeAttribute("stye");
+    }, duration);
+    bulletClassReset();
+    BulletIndex();
+}
+
+
+// 모든 bullet의 on 클래스를 삭제
+function bulletClassReset() {
+  bullets.forEach((bullet) => {
+    bullet.classList.remove("on");
+  });
+}
+
+//해당 bullet에 on 클래스 넣기
+function bulletIndex() {  
+  let index = itemIdx + bullets.length;
+  index %= bullets.length;
+  bullets[index].classList.add("on");
+}
+
+//ifame 재출력
+function stopVid() {
+  var item = document.getElementById('item')
+  item.innerHTML = item.innerHTML;
+}
+
+
+
+/*------------------------*/
+$(".gallery_list img").mouseover(function() {
+  $(this).attr("src", $(this).data("animated"))
+}),
+$(".gallery_list img").mouseout(function() {
+  $(this).attr("src", $(this).data("static"))
+});
+
+</script>
+
+
+
+    
+
+
+<!--------------------------------------------------------------------->
+</div>
+</body>
+</html>

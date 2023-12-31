@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차트 프로그래스 바</title>
+    <link rel="stylesheet" href="basic.css">
+</head>
+<body>
+<!--
+flex? 블럭이나 인라인 아닌, 요소 배치가능한 속성
+align-items: 세로축 기준 상하정렬 : center, flex-start(상단), flex-end(하단)
+justify-content : 가로축 기준 좌우정렬 : center, flex-start(왼쪽), flex-end(오른쪽)
+---------
+stroke-linecap    : 선끝 : round(둥글게)
+stroke-dasharray  : 점선 사이 간격
+stroke-dashoffset : 점선 사이 공간 길이
+-->
+
+<style>
+.chart01{display: flex; align-items:center; justify-content:center; height: 300px;}
+.chart01 .block{
+    position: relative; display: flex; align-items: center; justify-content: center; width: 180px; height: 180px; border-radius: 50%;
+}
+.chart01 .box{
+    position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; width: calc(100% - 29px); height: calc(100% - 29px); border-radius: 50%;
+    /*--flex-direction: colum = 수직 정렬--*/
+}
+.chart01 .box::before{
+    content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 10px solid #ddd; 
+}
+.chart01 .number .num{font-size: 35px; font-weight: bold;}
+.chart01 .number span:last-child{font-size: 17px;}
+.chart01 .title{font-size: 15px; color: #777;}
+.chart01 svg{
+    position: absolute; width: 100%; height: 100%; fill: none; transform: rotate(-90deg);
+}
+.chart01 circle{
+    stroke: #ff6600; stroke-linecap: round; stroke-width: 10px;
+    stroke-dasharray: 500; stroke-dashoffset: 500; transition: stroke-dashoffset 2s;
+    }
+</style>
+
+
+<!-- chart01------------------------------------------>
+<div class="chart01">
+    <div class="block">
+        <div class="box">
+            <p class="number">
+                <span class="num">80</span>
+                <span>%</span>
+            </p>
+            <p class="title">HTML</p>
+        </div>
+        <svg>
+        <!--svg=벡터이미지를 불러오는 코드-->
+            <circle cx="90" cy="90" r="80">
+            <!--circle은 비디오처럼 닫는 태그가 없음. 여는 태그에서 값을 지정
+                원중심 cx=x축, cy=y축, r=반지름 : 좌표값-->
+        </svg>
+    </div>
+    <div class="block">
+        <div class="box">
+            <p class="number">
+                <span class="num">100</span>
+                <span>%</span>
+            </p>
+            <p class="title">CSS</p>
+        </div>
+        <svg>
+        <!--svg=벡터이미지를 불러오는 코드-->
+            <circle cx="90" cy="90" r="80">
+            <!--circle은 비디오처럼 닫는 태그가 없음. 여는 태그에서 값을 지정
+                원중심 cx=x축, cy=y축, r=반지름 : 좌표값-->
+        </svg>
+    </div>
+    <div class="block">
+        <div class="box">
+            <p class="number">
+                <span class="num">35</span>
+                <span>%</span>
+            </p>
+            <p class="title">JS</p>
+        </div>
+        <svg>
+        <!--svg=벡터이미지를 불러오는 코드-->
+            <circle cx="90" cy="90" r="80">
+            <!--circle은 비디오처럼 닫는 태그가 없음. 여는 태그에서 값을 지정
+                원중심 cx=x축, cy=y축, r=반지름 : 좌표값-->
+        </svg>
+    </div>
+</div>
+<!-- chart01------------------------------------------>
+<script>
+    const block01 = document.querySelectorAll('.chart01 .block'); 
+        window.addEventListener('load', function(){
+            block01.forEach(item => {
+            let numElement = item.querySelector('.num');
+            let num = parseInt(numElement.innerText);
+            let count = 0;
+            let time = 2000 / num;
+            let circle = item.querySelector('circle');
+            setInterval(() => {
+                if(count == num){
+                clearInterval();
+                } else { 
+                count += 1;
+                numElement.innerText = count;
+                }
+            }, time)
+            circle.style.strokeDashoffset
+                = 500 - ( 500 * ( num / 100 ));
+        })
+    });
+</script>
+
+<!-------------------------------------------------------------------->
+<!---
+# box-shadow: 0 0 10px 3px #222;
+x-position (가로위치)
+y-position (세로위치)
+blur       (그림자 흐림정도, 값이 클수록 흐려짐)
+spread     ( 그림자 퍼짐정도, 값이 클수록 확장)
+color      (그림자 색상)
+--->
+
+<style>
+.chart02{
+    display: flex; align-items:center; justify-content:center; height: 300px;
+    background-color: #292929;
+}
+.chart02 .block{
+    position: relative; display: flex; align-items: center; justify-content: center; width: 180px; height: 180px; border-radius: 50%;
+}
+.chart02 .box{
+    position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; width: calc(100% - 50px); height: calc(100% - 50px); border-radius: 50%; background-color: #333;
+    /*--flex-direction: colum = 수직 정렬--*/
+}
+.chart02 .box::before{
+    content: ''; position: absolute; width: calc(100% + 28px); height: calc(100% + 28px); border-radius: 50%; border: 1px solid #333; 
+}
+.chart02 .number span{color: #fff;}
+.chart02 .number .num{font-size: 35px; font-weight: bold;}
+.chart02 .number span:last-child{font-size: 17px;}
+.chart02 .title{font-size: 15px; color: #777;}
+.chart02 svg{
+    position: absolute; width: 100%; height: 100%; fill: none; transform: rotate(-90deg);
+}
+.chart02 circle{
+    stroke: #ff6600; stroke-linecap: round; stroke-width: 4px;
+    stroke-dasharray: 500; stroke-dashoffset: 500; transition: stroke-dashoffset 2s;
+    }
+.chart02 .dot{
+    display: block; position: absolute; width: 100%; height: 100%;
+    border-radius: 50%; z-index: 2; transition: transform 2s, opacity 2s;
+}
+.chart02 .dot::after{
+    content: ''; position: absolute; width: 10px; height: 10px;
+    top: 5px; left: 50%; border-radius: 50%; background-color: #ff6600; transform: translateX(-50%);
+}
+</style>
+
+<!-- chart02------------------------------------------>
+<div class="chart02">
+    <div class="block">
+        <div class="box">
+            <p class="number">
+                <span class="num">60</span>
+                <span>%</span>
+            </p>
+            <p class="title">HTML</p>
+        </div>
+        <span class="dot"></span>
+        <svg>
+        <!--svg=벡터이미지를 불러오는 코드-->
+            <circle cx="90" cy="90" r="80">
+            <!--circle은 비디오처럼 닫는 태그가 없음. 여는 태그에서 값을 지정
+                원중심 cx=x축, cy=y축, r=반지름 : 좌표값-->
+        </svg>
+    </div>
+    <div class="block">
+        <div class="box">
+            <p class="number">
+                <span class="num">90</span>
+                <span>%</span>
+            </p>
+            <p class="title">CSS</p>
+        </div>
+        <span class="dot"></span>
+        <svg>
+        <!--svg=벡터이미지를 불러오는 코드-->
+            <circle cx="90" cy="90" r="80">
+            <!--circle은 비디오처럼 닫는 태그가 없음. 여는 태그에서 값을 지정
+                원중심 cx=x축, cy=y축, r=반지름 : 좌표값-->
+        </svg>
+    </div>
+    <div class="block">
+        <div class="box">
+            <p class="number">
+                <span class="num">25</span>
+                <span>%</span>
+            </p>
+            <p class="title">JS</p>
+        </div>
+        <span class="dot"></span>
+        <svg>
+        <!--svg=벡터이미지를 불러오는 코드-->
+            <circle cx="90" cy="90" r="80">
+            <!--circle은 비디오처럼 닫는 태그가 없음. 여는 태그에서 값을 지정
+                원중심 cx=x축, cy=y축, r=반지름 : 좌표값-->
+        </svg>
+    </div>
+</div>
+<!-- chart02------------------------------------------>
+<script>
+    const block02 = document.querySelectorAll('.chart02 .block'); 
+        window.addEventListener('load', function(){
+            block02.forEach(item => {
+            let numElement = item.querySelector('.num');
+            let num = parseInt(numElement.innerText);
+            let count = 0;
+            let time = 2000 / num;
+            let circle = item.querySelector('circle');
+            setInterval(() => {
+                if(count == num){
+                clearInterval();
+                } else { 
+                count += 1;
+                numElement.innerText = count;
+                }
+            }, time)
+            circle.style.strokeDashoffset
+                = 500 - ( 500 * ( num / 100 ));       
+            /*----------------*/
+            let dot = item.querySelector('.dot');
+                    dot.style.transform =
+                `rotate(${360 * (num / 100)}deg)`;
+            if(num == 100){
+                dot.style.opacity = 0;
+            }
+            /*----------------*/
+        })
+     });
+    </script>
+
+
+<style>
+    .chart03{height: 300px;}
+    .chart03 .block{
+        position: relative; width: 500px; margin: 0 auto;
+    }
+    .chart03 .box{
+        position: relative; width: 100%; height: 70px; 
+    }
+    .chart03 .box::before{
+        content: ''; position: absolute; bottom: 0; width: 100%; height: 25px; border-radius: 20px; background-color: #ddd; 
+    }
+    .chart03 .number{text-align: right;}
+    .chart03 .number .num{font-size: 35px; font-weight: bold;}
+    .chart03 .number span:last-child{font-size: 17px;}
+    .chart03 .title{font-size: 15px; color: #777; position: absolute; top: 10px;}
+    .chart03 svg{ position:absolute; top:0; width:100%; fill:none;}
+    .chart03 svg g{ 
+        stroke:#ff6600; stroke-width:25px;
+        stroke-dasharray:470; stroke-dashoffset: 470;
+    }
+    .chart03 svg path{
+        stroke-linecap: round; transition: stroke-dashoffset 2s;
+    }
+
+    </style>
+    
+    <!-- chart03------------------------------------------>
+    <div class="chart03">
+        <div class="block">
+            <div class="box">
+                <p class="number">
+                    <span class="num">60</span>
+                    <span>%</span>
+                </p>
+                <p class="title">HTML</p>
+            </div>
+            <svg>
+                <g><path d="M14 57 l473 0"></g>
+                    <!-- M시작점, Y시작점 l끝점 Y끝점 : 좌표값 -->
+            </svg>
+        </div>
+        <div class="block">
+            <div class="box">
+                <p class="number">
+                    <span class="num">90</span>
+                    <span>%</span>
+                </p>
+                <p class="title">CSS</p>
+            </div>
+            <span class="dot"></span>
+            <svg>
+            <!--svg=벡터이미지를 불러오는 코드-->
+                <circle cx="90" cy="90" r="80">
+                <!--circle은 비디오처럼 닫는 태그가 없음. 여는 태그에서 값을 지정
+                    원중심 cx=x축, cy=y축, r=반지름 : 좌표값-->
+            </svg>
+        </div>
+        <div class="block">
+            <div class="box">
+                <p class="number">
+                    <span class="num">25</span>
+                    <span>%</span>
+                </p>
+                <p class="title">JS</p>
+            </div>
+            <span class="dot"></span>
+            <svg>
+            <!--svg=벡터이미지를 불러오는 코드-->
+                <circle cx="90" cy="90" r="80">
+                <!--circle은 비디오처럼 닫는 태그가 없음. 여는 태그에서 값을 지정
+                    원중심 cx=x축, cy=y축, r=반지름 : 좌표값-->
+            </svg>
+        </div>
+    </div>
+    <!-- chart03------------------------------------------>
+    <script>
+    const block03 = document.querySelectorAll('.chart03 .block'); 
+        window.addEventListener('load', function(){
+            block03.forEach(item => {
+            let numElement = item.querySelector('.num');
+            let num = parseInt(numElement.innerText);
+            let count = 0;
+            let time = 2000 / num;
+            let g = item.querySelector('g');
+            setInterval(() => {
+                if(count == num){
+                clearInterval();
+                } else { 
+                count += 1;
+                numElement.innerText = count;
+                }
+            }, time)
+            g.style.strokeDashoffset
+                = 500 - ( 500 * ( num / 100 ));
+    
+            })
+        });
+    </script>
+</body>
+</html>

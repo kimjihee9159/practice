@@ -1,0 +1,355 @@
+@charset "utf-8";
+
+/*font-----------------------------------------------*/
+@font-face {
+  font-family:'NanumSquare';
+  src: local(NanumSquareOTFRegular);
+  src: url("../font/NanumSquareOTFRegular.eot");
+  src: url("../font/NanumSquareOTFRegular.woff") format("woff"), url("../font/NanumSquareOTFRegular.otf") format("opentype");
+}
+@font-face {
+  font-family:'NanumSquare-L';
+  src: local(NanumSquareOTFLight);
+  src: url("../font/NanumSquareOTFLight.eot");
+  src: url("../font/NanumSquareOTFLight.woff") format("woff"), url("../font/NanumSquareOTFLight.otf") format("opentype");
+}
+@font-face {
+  font-family:'NanumSquare-B';
+  src: local(NanumSquareOTFBold);
+  src: url("../font/NanumSquareOTFBold.eot");
+  src: url("../font/NanumSquareOTFBold.woff") format("woff"), url("../font/NanumSquareOTFBold.otf") format("opentype");
+}
+@font-face {
+  font-family:'NanumSquare-EB';
+  src: local(NanumSquareOTFExtraBold);
+  src: url("../font/NanumSquareOTFExtraBold.eot");
+  src: url("../font/NanumSquareOTFExtraBold.woff") format("woff"), url("../font/NanumSquareOTFExtraBold.otf") format("opentype");
+}
+
+
+body, html { height: 100%; font-style: normal; line-height: 1.4; -webkit-text-size-adjust: none; }
+body, input, textarea, select, button {
+  font-family: "NanumSquare", "나눔고딕", "Dotum", "돋움", "Helvetica", "Arial", "AppleSDGothicNeo", sans-serif;
+  font-size: 14px;
+}
+
+::selection{background-color: #00b843;}
+
+
+/*---------------------------------------------------------------------------------*/
+
+/*--header-------------------------------------------------------------------------*/
+
+
+    /*--layout---------------------------------------------------*/
+
+      #wrap{
+      font-family: 'NanumSquare', sans-serif;
+      position: relative; min-width: 1120px; min-height: 100%;
+      /*지정한 넓이나 높이보다 줄이면 스크롤바 생성됨*/}
+      .container{padding: 80px 0 0;}
+      /*--.container{padding: 80px 0 0;}--*/
+
+    /*--header-------------------------------------------------*/
+      /*header{background-color: #fff; line-height: 1.4;}*/
+      header{position: fixed; left: 0; right: 0; top: 0; z-index: 9999; min-width: 1100px;
+        background-color: #fffffff7; transition: top .4s ease-in-out;}
+      /*색상코드 알파값
+      FF=100%, F2=95%, E6=85% ....... */
+      .header_up{top: -180px;}
+      .header_wrap {max-width: 1600px; margin: 0 auto; text-align: center;}
+      
+      .header_wrap h1{float: left; width: 87px; height: 17px; margin: 32px 0 0 30px;
+      background-image: url("../img/header_logo.png"); background-size: 87px 17px;}
+      /*강제로 위치 지정해주는 코드 : float*/
+      /*상위 폴더 표시=..*/
+      .header_wrap h1 a{display: block; width: 100%; height: 100%;}
+      .blind {
+          position: absolute; clip: rect(0 0 0 0); width: 1px;
+          height: 1px; margin: -1px; overflow: hidden;
+      /*clip=블록 내에서 보여지는 부분의 영역을 지정*/
+
+      /*특정 부분만 보이게 하는 속성
+      clip: rect(top, right, bottom, left)
+          -position 속성값이 absolute 또는 fiexd일 때만 적용됨
+      -----------------------
+      박스에서 콘텐츠의 양이 많아 박스의 영역을 벗어나는 경우 처리하는 속성
+      overflow: hidden;(잘라내다)
+      overflow: scroll; (가로/세로 스크롤생성)
+      overflow-y: scroll; (세로스크롤)
+      overflow-x: scroll; (가로스크롤)
+      overflow: auto; (가변적으로)
+      */
+      }
+    /*--layout---------------------------------------------------*/
+    
+
+
+
+    /*--nav -----------------------------------------------------*/
+
+      nav{display: inline-block;}
+      .gnb_menu{font-size: 0; text-align: center;}
+      .gnb_menu > li{display: inline-block;}
+      .gnb_menu > li > a{
+        display: block; position: relative; margin: 0 32px; padding: 29px 0 30px;
+        font-family: 'NanumSquare-EB', sans-serif; font-size: 15px;
+        color: #333; text-decoration: none;
+      }
+      .gnb_menu > li > a::before{
+        content: '';
+        position: absolute; left: -1px; bottom: 20px;
+        width: calc(100% + 2px); height: 2px; background-color: #1ec545;
+        transform-origin: 0 0; transform: scaleX(0); transition: transform 0.3s ease;
+      }
+      /*before, after : 요소에 가상의 반복되는 요소를 붙여줄 수 있음. 기본 태그를 건드리지 않고 한 번에 수정 가능. 텍스트, 이미지 등 모두 가능*/
+
+      /*before, after의 선언문 => content: ''; => 내용이 없어도 '' 반드시 작성
+      
+      /*특정한 태그를 지정해 css 적용시 ">"로 해당 태그로 경로 작성*/
+
+      .gnb_menu > li:hover > a::before { transform: scaleX(1); }
+      .gnb_menu > li.on > a:before{ transform:scaleX(1); }
+      /*특정한 태그를 지정해 css 적용시 ">"로 해당 태그로 경로 작성*/
+      .gnb_menu > li:last-child a{padding-right: 25px;}
+      /*first-child=제일 첫번째 태그 지목
+        last-child=제일 마지막 태그 지목*/
+      .gnb_menu > li:last-child:hover a::after{
+        content:''; display: block; position: absolute; right: 0; top: 31px;
+        width: 18px; height: 18px;
+        background: url(../img/sprite.png) no-repeat; background-size: 474px 1500px; background-position: -59px 0;
+        }
+        /*최근에는 각각의 이미지 파일을 불러오기 보다는 여러 이미지가 한꺼번에 들어있는 이미지에서 필요한 이미지의 좌표를 불러와서 삽입하는 방식을 선호, 특히 아이콘처럼 이미지가 많은 경우 각각의 이미지를 가지고 있기 보다는 해당 방식으로 이미지를 삽입*/
+
+
+
+      /*--dropMenu----------------------------------------*/
+      .gnb_menu .dropMenu{
+          position: absolute; left: 0; right: 0; top: 80px; z-index: 999;
+          min-width: 1100px; height: 340px; background-color: #1ec545;
+          font-size: 0; text-align: center; display: none;
+      }
+
+      .gnb_menu .dropMenu li{
+          position: relative; display: inline-block; vertical-align: top;
+          width: 190px; height: 340px; padding: 28px 0 0; transition: all .3s;
+      }
+
+      .gnb_menu .dropMenu li::before, 
+      .gnb_menu .dropMenu li:last-child::after{
+          content: ''; display: block; position: absolute; left: 0; top: 0;
+          width: 1px; height: 100%; background-color: #4bd16a;
+      }
+      .gnb_menu .dropMenu li:last-child::after{left: auto; right: 0;}
+      .gnb_menu .dropMenu li:hover{background-color: #0fb93b;}
+      
+      .gnb_menu .dropMenu li:hover::before,
+      .gnb_menu .dropMenu li:hover + li::before,
+      .gnb_menu .dropMenu li:last-child:hover::after{display: none;}
+      
+
+      .dropMenu .dropMenu_list{font-size: 14px; line-height: 1.2; text-align: left;}
+      .dropMenu .dropMenu_list dt{margin-bottom: 14px;}
+      .dropMenu .dropMenu_list dd{margin-bottom: 7px;}
+      .dropMenu .dropMenu_list dt span{opacity: 1; font-family:'NanumSquare-B', sans-serif;} /*1=100%*/
+      .dropMenu .dropMenu_list dd span{opacity: .8;}
+      
+
+      .gnb_menu .dropMenu_list a{display: block; padding-left: 28px; color: #fff;}
+      .gnb_menu .dropMenu_list a span{ position: relative; display: inline-block;}
+      .gnb_menu .dropMenu_list a span::before{
+          content: ''; display: block; position: absolute; left: 0; bottom: 0;
+          width: 100%; height: 1px; background-color: #fff; transform-origin: 0 0;
+          transform: scaleX(0); transition: transform .3s ease;
+      }
+      .gnb_menu .dropMenu_list a:hover span::before{transform: scaleX(1);}
+      .gnb_menu .dropMenu_list a:hover span{opacity: 1;}
+      
+      /*--dropMenu----------------------------------------*/
+
+      /*--gnb_util-------------------------------------------------*/
+
+        .gnb_util{float: right; width:144px; margin: 29px 25px 0 0; font-size: 0;}
+        .lang{
+            display: inline-block; vertical-align: middle;
+            margin: 0 41px 0 0; font-size: 12px;}
+        /*vertical-align=>블록 설정된 요소를 수직정렬 시킬 때 사용*/
+        .lang a{position: relative; color:#333; text-decoration: none; }
+        .lang > a.off{opacity: 0.6;}
+        .lang a:first-child{margin-right: 21px;}
+        .lang a:first-child:after{
+            content: ''; display: block; position: absolute; right: -12px; top: 2px;
+            width: 1px; height: 9px; background-color:#333; opacity: 0.6;  filter: alpha(opacity=60);
+        }
+
+      /*--gnb_util---------------------------------------------------*/
+
+
+      /*-- sitemap_btn-----------------------------------------------*/
+        .sitemap_btn{
+            display: inline-block; vertical-align: middle; width: 24px; height: 23px;}
+        .sitemap_btn > button{position: relative; width: 100%; height: 100%;}
+        .sitemap_btn > button > span{
+            display: block; position: absolute; left: 0; width: 100%;
+            height: 2px; background-color: #333; transition: all .3s;
+        }
+        .sitemap_btn > button > span:nth-child(2){top: 4px;}
+        .sitemap_btn > button > span:nth-child(3){top: 10px;}
+        .sitemap_btn > button > span:nth-child(4){bottom: 5px;}
+        /*nth-child=태그 중 하나를 선택할 때 작성된 순서를 불러와서 선택할 수 있게 하는 태그*/
+
+        .sitemap_btn > button:hover > span{background-color: #00c73c;}
+        
+        /*select 요소의 화살표 제거(사파리, 크롬)
+        -webkit-appearance:none;
+        */
+    
+        /* 마우스 클릭 시 변하는 것으로 바꾸고 싶다면 hover 대신 스크립트를 집어 넣어야 함*/
+
+      /*-- sitemap_btn--------------------------------------------------*/
+
+      /*--heder.active---------------------------------------------------*/
+
+      header.active{height: 80px; background-color: #0fb93c;}
+      header.active .header_wrap h1{background: url(../img/header_logo_v2.png);}
+      header.active .lang a{color: #fff;}
+      header.active .lang a:first-child::after{background-color: #fff;}
+      header.active .gnb_menu{display: none;}
+      header.active .sitemap_btn span{background-color: #fff;}
+      header.active .sitemap_btn span:nth-child(2){top: -10px; transform:translateY(20px) rotate(-45deg) ;}
+      header.active .sitemap_btn span:nth-child(3){opacity: 0;}
+      header.active .sitemap_btn span:nth-child(4){bottom: -9px; transform:translateY(-20px) rotate(45deg)}
+      header.active + .sitemap_dimmed{
+          display: block; position: fixed; left: 0; right: 0; top: 0; bottom: 0;
+          height: 100vh; z-index: 100; background-color: #3a3e50f2;
+      }
+      header.active .sitemap{
+        display: block; position: fixed; left: 0; right: 0; top: 80px; bottom:0;
+        height: calc(100vh - 80px); z-index: 200; overflow: auto;
+         }
+      header.active.header_up{top: 0;}
+      .overflow_hidden{overflow: hidden;}
+
+      /*-----------------------------------*/
+      .sitemap_container{width: 1530px; margin: 0 auto; padding: 35px 90px 70px; background-color: #0fb93c; position: absolute; left: 0; top: 0; bottom: 0; right: 0;}
+      .sitemap_list{float: left; width: 180px; color: #fff;}
+      /*--.sitemap_list > li:first-child{margin: 0;}
+      --*/
+      .sitemap_list:last-child{width: 150px;}
+      .sitemap_list > strong{display: block; position: relative; font-family:'NanumSquare-EB',sans-serif; font-size: 20px; padding-bottom: 31px;}
+      .sitemap_list > strong::before{
+          content: ''; position: absolute; left: 0; bottom: 4px; width: 10px; height: 2px; background-color: #fff;}
+      /*-----------------------------------*/
+
+      .sitemap_menu{padding: 30px 0 0; font-family: 'NanumSquare', sans-serif; line-height: 16px;}
+      .sitemap_menu > li:first-child{margin: 0;}
+      .sitemap_menu a{text-decoration: none; display: inline-block; vertical-align: top; color: #fff;}
+      .sitemap_menu:first-of-type{padding-top: 25px;}
+      
+      /*-----------------------------------*/
+      
+      .sitemap_menu span{position: relative; display: inline-block; vertical-align: top; font-family: 'NanumSquare-L', sans-serif; font-size: 14px; opacity: .8;}
+      .sitemap_menu strong span{
+          font-family:"NanumSquare-B",sans-serif; font-size: 15px; line-height: 17px; opacity: 1;}
+      .sitemap_menu > li{margin-top: 7px; font-family: "NanumSquare", sans-serif; line-height: 16px;}
+      .sitemap_menu > li.depth_title{padding-bottom: 9px;}
+    
+      /*-----------------------------------*/
+    
+      .sitemap_menu span::before{
+          content: ''; display: block; position: absolute; left: 0; bottom: 0;
+          width: 100%; height: 1px; background-color: #fff; transform-origin: 0 0;
+          transform: scaleX(0); transition: transform .3s ease;
+      }
+      .sitemap_menu > li a:hover span{opacity: 1;}
+      .sitemap_menu > li a:hover span::before{transform: scaleX(1);}
+      /*-----------------------------------*/
+      .sitemap_menu.depth_4 span{font-size: 12px;}
+      .sitemap_menu.depth_4 strong span{font-size: 14px;}
+      .sitemap_menu.depth_4 > li {line-height: 13px;}
+      .sitemap_menu.depth_4 > li.depth_title{padding-bottom: 5px;}
+      .sitemap_menu.depth_4{padding-top: 5px;}
+      .sitemap_menu.depth_4 + .sitemap_menu.depth_4 {padding: 16px 0 4px;}
+
+      /*-----------------------------------*/
+      .sitemap_list + .sitemap_list{margin-left: 20px;}
+      .sitemap, .sitemap_dimmed{display: none;}
+      /*-----------------------------------*/
+
+      .btn_link{position: relative; padding-right: 26px;}
+      .btn_link::after {
+          content: ''; display: block; position: absolute; right: 0; top: -1px;
+          width: 18px; height: 18px; background: url(../img/sprite.png); background-size: 474px 1500px; background-position: -81px 0;
+      }
+
+      /*--heder.active---------------------------------------------------*/
+      
+/*--header-------------------------------------------------------------------------*/
+
+
+/*--footer-------------------------------------------------------------------------*/
+
+
+      footer{width: 100%; background-color: #f8f9fa; font-size: 14px;}
+      .footer_wrap{position:relative; max-width: 1600px; margin: 0 auto; padding: 74px 0 70px; text-align: center;}
+      .footer_wrap .footer_logo{position: absolute; left: 30px; top: 76px; width: 63px; height: 13px; background: url(../img/footer_logo.png) no-repeat; background-size: 63px 13px;}
+      .footer_menu{position: absolute; left: 105px; top: 76px;}
+      .footer_menu li{display: inline-block; position: relative; margin: 0 10px; font-size: 14px;}
+      .footer_menu a{color: #878890;}
+      .footer_menu a:hover{text-decoration: none;}
+      .footer_menu li::before{
+          content: ''; position: absolute; left: -10px; top: 3px; width: 1px; height: 12px;
+          background-color: #dfe0e1;}
+      .footer_menu li:first-child::before {width: 0;}
+      .footer_menu li:last-child{font-weight: bold;}
+           
+      /*---------
+      .footer_copy{margin: 0 auto; width: 337px; height: 16px;
+          font-size: 0; line-height: 0; text-indent: -999px;
+          *세가지 모두 텍스를 숨기기 위해서 작성됨, 폰트 사이즈 0, 행간 0, 텍스트는 텍스트 박스를 벗어나 상단에 위치하도록
+          background: url(../img/footer_copy.png) no-repeat; overflow: hidden;
+          *overflow=>지정된 위치를 벗어나면 어떻게 행동할지에 대한 코드
+          hidden으로 작성되었기 때문에 숨겨짐
+          }
+      ------------*/
+
+
+
+      /* affiliate_list-------------------------------------*/
+      
+      .affiliate_list{position: absolute; right: 30px; top: 74px;}
+      .affiliate_list button{position: relative; padding-right: 26px;}
+      .affiliate_list button::before{
+          content: ''; position: absolute; right: 0; top: 0; width: 16px;
+          height: 16px; background: url(../img/sprite.png); background-size: 474px 1500px; background-position: -222px -26px;}
+      .affiliate_list ul{position: absolute; left: 0; bottom: 0; width: 200px; 
+          padding: 27px 0 25px; border: 1px solid #dfe0e1; background-color: #fff;
+          text-align: left; display: none;}
+      .affiliate_list li{margin-top: 13px;}
+      .affiliate_list li:first-child{margin-top: 0;}
+      .affiliate_list a{display: block; width: 100%; padding: 0 24px; color: #878890;}
+      .affiliate_list a:hover{color: #00b843; text-decoration: none;}
+  
+      .affiliate_list a span{position: relative;}
+      .affiliate_list a span::after{
+          content: ''; position: absolute; right: -24px; top: -2px; width: 18px; height: 18px; background: url(../img/sprite.png); background-size: 474px 1500px;
+          background-position: -104px -68px; display: none;
+      }
+      .affiliate_list a:hover span::after{display: block;}
+
+
+      /* affiliate_list-------------------------------------*/
+
+      /*------------*/
+      .footer_wrap .footer_copy{
+        margin: 0 auto; width: 337px; height: 16px; 
+        font-size: 0; line-height: 0; text-indent: -999px; 
+        background: url(../img/footer_copy.png) no-repeat; overflow: hidden;
+      }
+
+      @media only screen and (max-width:1200px){
+      .footer_wrap .footer_copy{ margin-left:430px; } 
+      }    
+    
+
+/*--footer-------------------------------------------------------------------------*/

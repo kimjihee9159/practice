@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--파비콘 : 즐겨찾기와 아이콘의 합성어로,주소창(탭)에 표시되는 작은 아이콘-->
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <!--오픈그래프 : 미리보기 설정 그래프, sns에 주소를 공유할 때 보여지는 썸네일, 타이을, 내용 등을 의미-->
+    <meta property="og:title" content="메인비주얼배너">
+    <meta property="og:description" content="네이버그룹-메인비주얼배너">
+    <meta property="og:image" content="img/og_sns.png">
+
+    <title>네이버그룹-메인비주얼배너</title>
+    <link rel="stylesheet" href="css/basic.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <style>
+        .main_slide{ overflow:hidden; position:relative;}
+        .slide_container{ position:absolute; bottom:0; width:100%; height:100%; z-index:1000;}
+        .slide-bg {width:500%;}
+        .slide-bg .slide_item{float:left; width:20%;}
+
+        /*----------------------*/
+        .slide_info_box{ display:block; position:relative; width:100%; height:100%; color:#fff;}
+        .slide_info_box h2{position:absolute; right:160px; bottom:70px;}
+        .slide_info_box .logo_naver{width: 150px; height: 50px; background: url(img/main_slide/logo_naver.png) no-repeat; background-size: 150px 50px;}
+        .slide_text_box{ position:absolute; left: 160px; bottom: 157px;}
+        .slide_text_box strong{
+            display: block; margin-bottom: 35px;
+            font-size:36px; font-family:'NanumSquare-EB'; line-height:1.3; letter-spacing:-1px;}
+        .slide_text_box p{ font-size:15px; display: block; line-height: 1.6; height: 48px;}
+
+        /*--button------------*/
+        .btn_prev,
+        .btn_next{position: absolute; bottom: 200px; width: 46px; height: 46px;
+        background: url(img/main_slide/side_btn.png) no-repeat; background-size: 96px 46px; opacity: 0.8; transition: opacity 0.3s;}
+        .btn_prev:hover, .btn_next:hover{opacity: 1;}
+        .btn_prev{left: 85px; background-position: 0 0;}
+        .btn_next{right: 85px; background-position: -50px 0;}
+
+        /*--Progressbar------------*/
+        .slide_progressbar{position: absolute; height: 1px; width: calc(100% - 320px); left: 160px; bottom: 222px; background-color: #ffffff33; }
+        /*--opacity로 투명도를 주면 같은 클래스명을 쓰는 태그에도 영향을 주기 때문에
+        색 코드로 투명도를 줘야한다(컬러칩 누르면 투명도 조절 가능)--*/
+        .slide_progressbar .fill{position: absolute; left: 0; top: 0; width: 20%; height: 1px; background-color: #fff;}
+
+        /*--slide_paging------------*/
+        .slide_paging{position: absolute; left: 160px; bottom: 100px; font-size: 12px; color: #fff;}
+        .slide_paging .current{font-family: 'NanumSquare-EB', sans-serif;}
+        .slide_paging .total{position: relative; padding-left: 14px; font-family: 'NanumSquare-L', sans-serif;}
+        .slide_paging .total::before{
+            content: ''; position: absolute; left: 7px; top: 50%; width: 1px; height: 8px; margin-top: -4px; background-color: #d6d6d5;
+        }
+        /*--slide-bg------------*/
+        .slide-bg .slide_item img{width:100%}
+        .slide-bg .slide_item video{position: relative; width: 100%; object-fit: cover;}
+
+        /*--미디어쿼리------------*/
+        @media only screen and (max-width:700px){
+            #wrap{min-width:auto;}
+            .main_slide{height: 640px;}
+            .slide-bg .slide_item{overflow: hidden; position: relative;}
+            .slide-bg .slide_item img,
+            .slide-bg .slide_item video{width: auto; height: 640px; margin: 0 -110%;}
+            .btn_prev,
+            .btn_next{bottom: 93px; width: 34px; height: 34px; background-size: 71px 34px; opacity: 1;}
+            .btn_prev{left: 18px; background-position: 0 0;}
+            .btn_next{right: 18px; background-position: -37px 0;}
+            .slide_text_box{
+                left: 0; bottom: 72px; padding: 0 60px; width: 100%; height: 100px; text-align: center; display: table;}
+            .slide_text_box strong{
+                font-size: 23px; font-family: 'NanumSquare-EB',sans-serif; margin-bottom: 0; display: table-cell; vertical-align: middle;}
+            .slide_paging{left:0; bottom: 30px; width: 100%; text-align: center;}
+            /*--------------*/
+            .slide_info_box h2,
+            .slide_text_box p,
+            .slide-progressbar{display: none;}
+            }
+        
+
+    </style>
+
+    <!--main_slide------------------------------------------------->
+    <div class="main_slide">
+
+        <!--slide_container------------------------------------------------->
+        <div class="slide_container">
+            <!--00----------------------->
+            <a href="#" class="slide_info_box">
+                <h2 class="logo_naver"><span class="blind">네이버로고</span></h2>
+                <div class="slide_text_box">
+                    <strong>
+                        건강한 지구를 위해<br>
+                        네이버가 Green 계획을 소개합니다.
+                    </strong>
+                    <p>
+                        디지털 친환경부터 지구를 위한 가장 쉽고 착한 소비까지<br>
+                        네이버의 기술력과 파트너와의 공동 노력으로 친환경 생태계를 확대해 나가고 있습니다.
+                    </p>
+                </div>
+            </a>
+            <!--00----------------------->
+            <!--01----------------------->
+            <a href="#" class="slide_info_box">
+                <div class="slide_text_box">
+                    <strong>
+                        네이버 1784에서<br>
+                        우리는 혁신을 현실로 만들고 있습니다.
+                    </strong>
+                    <p>
+                       네이버의 다양한 기술들로 실험과 도전, 융햡을 통해 <br>
+                       새로운 기회와 가능성을 만들어 갑니다.
+                    </p>
+                </div>
+            </a>
+            <!--01----------------------->
+            <!--02--------------------->
+            <a href="#" class="slide_info_box">
+                <div class="slide_text_box">
+                    <strong>
+                        사업의 시작부터 성장까지<br>
+                        네이버 SME 풀케어시스템이 함께 합니다.
+                    </strong>
+                    <p>
+                        사업자를 지원하고 응원하는 네이버 시스템이 사장님의 경쟁력이 됩니다.
+                    </p>
+                    </p>
+                </div>
+            </a>
+            <!--02----------------------->
+            <!--03--------------------->
+            <a href="#" class="slide_info_box">
+                <div class="slide_text_box">
+                    <strong>
+                        N개의 엔진이, 하나의 팀처럼!<br>
+                        네이버의 다양하 서비스와 비즈니스를 만듭니다.
+                    </strong>
+                    <p>
+                        도전과 혁신으로 똘똘 뭉친 TEAM NAVER 인사이드 스토리 <br>
+                        TEAM NAVER 에피소드로 만나보세요.
+                    </p>
+                    </p>
+                </div>
+            </a>
+            <!--03----------------------->
+            <!--04--------------------->
+            <a href="#" class="slide_info_box">
+                <div class="slide_text_box">
+                    <strong>
+                        네이버의 뛰어난 동료들과 함께 성장하는 법,<br>
+                        지금 바로 NAVERSHIP에 탑승하세요!
+                    </strong>
+                    <p>
+                        서로 다른 사람들이 모여 네이버의 추진력을 만듭니다.
+                    </p>
+                </div>
+            </a>
+            <!--04----------------------->
+
+            
+            
+
+            <!--Progressbar---------------------------->
+            <div class="slide_progressbar">
+                <span class="fill"></span>
+            </div>
+            <!--Progressbar---------------------------->
+
+            <!--slide_paging---------------------------->
+            <div class="slide_paging">
+            <span class="current">1<span class="blind">현재 슬라이드 페이지</span></span>
+            <span class="total">5<span class="blind">전체 슬라이드 페이지</span></span>
+            </div>
+            <!--slide_paging---------------------------->
+
+            <!--button---------------------------->
+            <button type="button" class="btn_prev"><span class="blind">이전</span></button>
+            <button type="button" class="btn_next"><span class="blind">다음</span></button>
+            <!--button---------------------------->
+        </div>
+        <!--slide_container------------------------------------------------->
+
+
+
+        <!--slide-bg--------------------------->
+        <div class="slide-bg">
+            <div class="slide_item" data-index="0"><img src="img/main_slide/slide1.jpg" alt=""></div>
+            <div class="slide_item" data-index="1"><img src="img/main_slide/slide2.jpg" alt=""></div>
+            <div class="slide_item" data-index="2">
+                <video autoplay muted loop poster="img/main_slide/slide3.jpg">
+                    <source src="img/main_slide/SME_video.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="slide_item" data-index="3"><img src="img/main_slide/slide3.jpg" alt=""></div>
+            <div class="slide_item" data-index="4"><img src="img/main_slide/slide4.jpg" alt=""></div>
+        </div>
+        <!--slide-bg--------------------------->
+
+    </div>
+    <!--main_slide------------------------------------------------->
+    <script type="text/javascript" src="js/main_slide.js"></script>
+
+
+</div>
+</body>
+</html>

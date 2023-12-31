@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+
+
+<style>
+*{margin: 0; padding: 0;}
+html, body{font-size: 100%; line-height: normal; font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;}
+ul, li{list-style: none;}
+input, button, select, textarea, label{
+    font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;}
+
+/*---------------------------------*/
+body{background-color: #f5f6f7;}
+.join{max-width: 350px; margin: 0 auto;}
+.join li{padding: 5px 0;}
+.join li > p{font-size: 14px; font-weight: bold; padding:5px 0;}
+.join input, 
+.join textarea,
+.join select{width:100%; border : 1px solid #dadada; padding: 5px; font-size: 14px; vertical-align: middle;}
+.join label{font-size:14px; padding: 5px; cursor: pointer;}
+.join input[type="radio"]{width: 19px; height: 19px;}
+.join input[type="tel"]{width: 25%;}
+.join button{width: 45%; cursor: pointer;}
+/*--------------------------*/
+.join input[type="checkbox"]{display: none;}
+.join input[type="checkbox"]+label em{
+    display:inline-block; width: 20px; height: 20px; margin: -2px 10px 0 0; vertical-align: middle; background: url(checkbox.png) no-repeat; background-size: 40px 20px; background-position: 0 0;
+}
+.join input[type="checkbox"]:checked + label em{background-position: -20px 0;}
+</style>
+
+
+
+<div class="join">
+<form action="welcome.html">
+
+<ul>
+    <li>
+        <p>아이디</p>
+        <input type="text" name="id" placeholder="아이디">
+    </li>
+    <li>
+        <p>비밀번호</p>
+        <input type="text" name="pw" placeholder="비밀번호" maxlength="5">
+    </li>
+    <li>
+        <p>가입날짜</p>
+        <input type="date" id="day" name="day">
+    </li>
+    <li>
+        <p>좋아하는 색</p>
+        <input type="color"  id="color" name="color">
+    </li>
+    <li>
+        <p>주소</p>
+        <select id="region" name="region">
+        <option value="서울">서울</option>
+        <option value="대구">대구</option>
+        </select>
+        <input type="search"  id="adress" name="adress">
+        <input type="submit" value="검색">
+    </li>
+    <li>
+        <p>전화번호</p>
+        <input type="tel" name="t1"> -
+        <input type="tel" name="t2"> -
+        <input type="tel" name="t3">
+    </li>
+    <!--
+    <li>
+        <p>전화번호2</p>
+        <select id="intro" name="intro">
+            <option value="010">010</option>
+        <input type="tel" name="t2"> -
+        <input type="tel" name="t3">
+    </li>
+    -->
+    <li>
+        <p>취미</p>
+        <input type="checkbox" name="sport" id="sport1">
+        <label for="sport1"><em></em>축구</label>
+        <input type="checkbox" name="sport" id="sport2">
+        <label for="sport2"><em></em>농구</label>
+    </li>
+    <li>
+        <p>성별</p>
+        <input type="radio" id="gender1" name="gender">
+        <label for="gender1">여자</label>
+        <input type="radio" id="gender2" name="gender">
+        <label for="gender2">남자</label>
+    </li>
+    <li>
+        <p>번호</p>
+        <input type="number" min="1" max="5" value="1">
+    </li>
+    <li>
+        <p>내용</p>
+        <textarea name="" id="" name="" cols="30" rows="5"></textarea>
+    </li>
+    <li>
+        <p>첨부파일</p>
+        <input type="file" id="" name=""></input>
+    </li>
+</ul>
+
+
+<div>
+    <button type="reset" value="리셋">리셋</button>
+    <button type="button">확인</button>
+    <!--
+    button(기능없음) / submit(전달) / reset(초기화)
+    -->
+</div>
+
+</form>
+</div>
+
+
+
+</body>
+</html>

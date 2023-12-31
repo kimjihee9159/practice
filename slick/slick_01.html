@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="basic.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <!------------------------------------------------------>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <title>슬릭-Autoplay</title>
+</head>
+<body>
+<div id="wrap">
+<!--------------------------------------------------------------------->
+<style>
+#wrap{text-align: center;}
+nav{margin: 60px 0;}
+.muon{font-weight: bold;}
+</style>
+
+<nav>
+<a href="slick_01.html" class="muon">슬릭-Autoplay</a> / 
+<a href="slick_02.html">슬릭-Center Mode</a> /
+<a href="slick_03.html">슬릭-Single Item</a>
+</nav>
+<!--nav---------------------------------->
+
+<!----
+<i class="xi-angle-left"></i>
+<i class="xi-angle-right"></i>
+
+---->
+<i class="xi-angle-left-thin"></i>
+<i class="xi-angle-right-thin"></i>
+
+<style>
+.slider{width: 1150px; margin: auto;}
+.slider div{position: relative;}
+.slider p{width: 224px; height: 224px; overflow: hidden;}
+.slider img{size: 100%; height: 100%; object-fit: cover;}
+/*-------------------------------------*/
+.slick-dots li{display: inline-block; margin: 0 10px;}
+.slick-dots li button{
+    height: 10px; width: 10px; background: #00000050; border-radius: 50%; font-size: 0;
+}
+.slick-dots li.slick-active button{background: #000000cc;}
+/*-------------------------------------*/
+.slider > button{
+    font-size: 0;
+    position: absolute; z-index: 10; top: 50%; 
+    width: 20px; height: 20px; transform: translateY(calc(-50% - 20px)); 
+}
+.slider > button.slick-prev{left: -30px;}
+.slider > button.slick-next{right: -20px;}
+.slider > button::before{font-family: "xeicon"; color: #333; font-size: 24px;}
+.slider > button.slick-prev::before{content: "\e93b";}
+.slider > button.slick-next::before{content: "\e93e";}
+
+</style>
+
+<div class="slider">
+    <div><p><img src="img/1.jpg" alt=""></p></div>
+    <div><p><img src="img/2.jpg" alt=""></p></div>
+    <div><p><img src="img/3.jpg" alt=""></p></div>
+    <div><p><img src="img/4.jpg" alt=""></p></div>
+    <div><p><img src="img/5.jpg" alt=""></p></div>
+    <div><p><img src="img/1.jpg" alt=""></p></div>
+    <div><p><img src="img/2.jpg" alt=""></p></div>
+    <div><p><img src="img/3.jpg" alt=""></p></div>
+    <div><p><img src="img/4.jpg" alt=""></p></div>
+    <div><p><img src="img/5.jpg" alt=""></p></div>
+</div>
+
+<script>
+$('.slider').slick({
+    dots: true,
+    slidesToShow: 5,
+    slidesToScroll:5,
+    autoplay: true,
+    autoplaySpeed: 2000,
+});
+</script>
+    
+
+
+<!--------------------------------------------------------------------->
+</div>
+</body>
+</html>

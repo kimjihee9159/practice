@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>HoverEffect : Set_1</title>
+    <!------------------------------------->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,800,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+
+<style>
+    /*-- common --------------------*/
+    *{margin:0; padding:0; box-sizing:border-box;}
+    body {background:#2f3238; color: #fff; font-family:'Raleway',sans-serif; font-weight:400;}
+    a img, img{border: 0; vertical-align: top;}
+    ul, li{ list-style:none;}
+    h2, h4{ font-size: 100%; font-weight: normal; }
+    /*-- Layout ----------------------------*/
+    #wrap{ max-width: 1000px; margin: 0 auto 3%; text-align: center;}
+    #wrap h2{padding: 40px 1% 10px; font-size: 30px; text-align: left;}    
+    .grid { position: relative;}
+    .grid li { 
+        position: relative; float: left; overflow: hidden; margin: 10px 1%; text-align: left;
+        width: 48%; min-width: 320px; max-width: 480px; max-height: 360px;
+    }
+    .grid:after{content: ''; display: block; clear: both;}
+    /*-----------------*/
+    .grid li div{ font-size: 20px; text-transform: uppercase;}
+    .grid h4{ font-size: 30px; font-weight: 300;}
+    .grid h4 span{font-weight: 800;}
+    .grid p { font-size: 14px; letter-spacing: 1px;}
+    /*-----------------*/
+    @media screen and (max-width:800px){
+        #wrap{padding: 0 10px;}
+        #wrap h2{ text-align: center;}
+        .grid li{ display: inline-block; float: none; margin: 10px auto; width: 100%;}
+    }
+    </style>
+
+<body>
+    
+
+<!--Goliath-------------------------------------------------->
+
+<style>
+    .Goliath li{background: #df4e4e;}
+    .Goliath img{opacity: 0.8; transform: translate3d(0, 0, 0); transition: transform .35s;}
+    .Goliath div{position: absolute; top: 0; left: 0; padding: 10%; width: 100%; height: 100%; color: #fff;}
+    /*------------------------*/
+    .Goliath h4, .Goliath p{position: absolute; bottom: 0; left: 0; padding: 30px;}
+    .Goliath img, .Goliath h4{transition: transform .35s;}
+    /*------------------------*/
+    .Goliath h4{transform: translate3d(0, 0, 0);}
+    .Goliath p{transform: translate3d(0, 50px, 0); opacity: 0; transition: opacity .35s, transform .35s; text-transform: none; font-family: 'Raleway', sans-serif; font-weight: 400; font-size: 18px;}
+    /*------------------------*/
+    .Goliath a:hover img{opacity: 0.8; transform: translate3d(0, -80px, 0);}
+    .Goliath a:hover h4{transform: translate3d(0, -100px, 0);}
+    .Goliath a:hover p{transform: translate3d(0, 0, 0); opacity: 1;}
+</style>
+
+    <h2>Goliath</h2>
+    <ul class="grid Goliath">
+        <li>
+            <a href="#">
+                <img src="img/10.jpg" alt="">
+                <div>
+                    <h4>Thoughtful <span>Goliath</span></h4>
+                    <p>When Goliath comes out, you should run.</p>                
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="img/11.jpg" alt="">
+                <div>
+                    <h4>Thoughtful <span>Goliath</span></h4>
+                    <p>When Goliath comes out, you should run.</p>                
+                </div>
+            </a>
+        </li>
+    </ul>
+    
+
+<!--Goliath-------------------------------------------------->
+
+
+<!--Winston-------------------------------------------------->
+
+<style>
+    .Winston li{background: #162633; cursor: pointer;}
+    .Winston img{opacity: .8;}
+    .Winston div{
+        position: absolute; top: 0; left: 0; padding: 10%; width: 100%; height: 100%;
+    }
+    .Winston div::before{
+        content: ''; position: absolute; top: 0; left: 0; width: 0; height: 0;
+        border-bottom: 360px solid #fff; border-left: 500px solid transparent;
+        transform-origin: 0 100%; transform: rotate(45deg); opacity: 1;
+        transition: opacity .45s, transform .45s;
+    }
+    .Winston h4{transform: translate3d(0, 20px, 0); transition: transform .35s;}
+    .Winston p{position: absolute; bottom: 20px; right: 20px;}
+    .Winston a{
+        color: #3c4a50; font-size: 24px; float: right; transform: translate3d(0, 50px, 0);
+        opacity: 0; transition: opacity .35s, transform .35s;
+    }
+    .Winston p a i{display: inline-block; padding: 12px;}
+    /*------------*/
+    .Winston li:hover img{opacity: .6;}
+    .Winston li:hover div::before{transform: rotate(20deg); opacity: .7;}
+    .Winston li:hover h4{transform: translate3d(0, 0, 0);}
+    .Winston li:hover p{bottom: 20px;}
+    .Winston li:hover a i{color: #cc6055;}
+    .Winston li:hover a{transform: translate3d(0, 0, 0); opacity:1;}
+    .Winston li:hover a:first-child{transition-delay: .05s;}
+    .Winston li:hover a:nth-child(2){transition-delay: .1s;}
+    .Winston li:hover a:nth-child(3){transition-delay: .15s;}
+    
+</style>
+
+<h2>Winston</h2>
+<ul class="grid Winston">
+    <li>
+           <img src="img/12.jpg" alt="">
+            <div>
+                <h4>Jolly <span>Winston</span></h4>
+            <p>
+                <a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-hashtag" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>        
+            </p>
+    </li>
+    <li>
+            <img src="img/2.jpg" alt="">
+            <div>
+                <h4>Jolly <span>Winston</span></h4>
+                <p>
+                    <a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-hashtag" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>        
+                </p>
+    </li>
+</ul>
+
+
+<!--Goliath-------------------------------------------------->
+
+
+
+<!--Goliath-------------------------------------------------->
+
+<style>
+    .steve li{overflow: visible;}
+    .steve img{transform: perspective(1000px);}
+</style>
+
+<h2>steve</h2>
+<ul class="grid steve">
+    <li>
+        <a href="#">
+            <img src="img/10.jpg" alt="">
+            <div>
+                <h4>Thoughtful <span>steve</span></h4>
+                <p>When Goliath comes out, you should run.</p>                
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <img src="img/11.jpg" alt="">
+            <div>
+                <h4>Thoughtful <span>Golsteveiath</span></h4>
+                <p>When Goliath comes out, you should run.</p>                
+            </div>
+        </a>
+    </li>
+</ul>
+
+
+<!--Goliath-------------------------------------------------->
+
+
+</body>
+</html>

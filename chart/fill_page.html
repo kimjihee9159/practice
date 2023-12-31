@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>해당영역 감지 - 모션</title>
+    <link rel="stylesheet" href="basic.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+    <style>
+        html{height: 100vh;}
+        .behabior{scroll-behavior: smooth;}
+        /*--------------------*/
+        html{overflow: auto;}
+        html::-webkit-scrollbar{width: 10px;}
+        html::-webkit-scrollbar-thumb{background-color: #555;}
+        html::-webkit-scrollbar-track{background-color: #999;}
+    </style>
+</head>
+<body>
+<div id="wrap">
+<!-------------------------------------------------------->
+
+<style>
+    .sec_nav{position:fixed; top:20px; right:20px; z-index:99999;}
+    .sec_nav .active{ color:red; font-weight:bold;}
+    </style>
+    <ul class="sec_nav">
+      <li><a href="#section01" class="active" >section 01</a></li>
+      <li><a href="#section02">section 02</a></li>
+      <li><a href="#section03">section 03</a></li>
+    </ul>
+    
+
+<style>
+.section{height:100vh; position:relative; overflow:hidden;}  
+.section.sec1{background:#FFE400;}
+.section.sec2{background:#00D8FF;}
+.section.sec3{background:#ABF200;}
+/*---------------*/
+.section h3{
+    font-size:100px;position:absolute; 
+    width:600px; height:200px; margin:-100px -300px; background:#fff;
+    display:flex; align-items:center; justify-content:center;
+    transition: all 1s;
+    }
+.section.sec1 h3{ top:50%; left:0;}
+.section.sec2 h3{ top:50%; right:0;}
+.section.sec3 h3{ bottom:0; left:50%;}
+.section.motion.sec1 h3{left:50%;}
+.section.motion.sec2 h3{right:50%;}
+.section.motion.sec3 h3{bottom:50%;}
+</style>
+
+<div id="section01" class="section sec1"><h3>section 01</h3></div>
+<div id="section02" class="section sec2"><h3>section 02</h3></div>
+<div id="section03" class="section sec3"><h3>section 03</h3></div>
+
+<script>
+/*--sec_nav---------------------------------------*/
+$(window).on('scroll', function(){
+    var pos = $(window).scrollTop();
+    var pos2 = pos + 50;
+    var scrollBottom = pos + $(window).height();
+    if (pos2 > $('section01').offset().top){highlightlink('section01')}
+    if (pos2 > $('section02').offset().top){highlightlink('section02')}
+    if (pos2 > $('section03').offset().top){highlightlink('section03')}
+});
+    function highlightlink(anchor){
+        $("html").addClass("behavior");
+        $(".sec_nav .active").removeClass("active")
+        $("sec_nav").find('[herf="#' + anchor +'"]').addClass('active');
+    }
+
+/*--sec_nav---------------------------------------*/
+
+
+/*--motion---------------------------------------*/
+
+$(document).ready(function(){
+    const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.2,
+    }  
+    const observer = new IntersectionObserver(entry => {
+    entry.forEach(entry => {
+        if (entry.isIntersecting) {
+        entry.target.classList.add('motion');
+        } else {
+        entry.target.classList.remove('motion');
+        }
+    });
+    }, options);
+    const boxList = document.querySelectorAll('.section');
+    boxList.forEach(el => observer.observe(el));
+});
+/*--motion---------------------------------------*/
+</script>
+<script type="text/javascript" src="fill_page.js"></script>
+
+
+
+<!-------------------------------------------------------->
+</div>
+</body>
+</html>
